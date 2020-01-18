@@ -1,0 +1,274 @@
+# Microsoft Developer Studio Generated Dependency File, included by SoldirOfMario.mak
+
+.\MY.LIB\Debug.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Keyboard.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	
+
+.\MY.LIB\Log.cpp : \
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	
+
+.\MY.LIB\Mouse.cpp : \
+	".\MY.LIB\Mouse.h"\
+	
+
+.\MY.LIB\Moveobj.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sprite.h"\
+	
+
+.\MY.LIB\Rects.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Rects.h"\
+	
+
+.\MY.LIB\Screen.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Timer.h"\
+	
+
+.\MY.LIB\Sound.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Sprite.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sprite.h"\
+	
+
+.\MY.LIB\SriteEditor.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\SpriteEditor.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Timer.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	
+
+.\MY.LIB\Level.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\SpriteEditor.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Mario.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\SpriteEditor.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Mario1.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Mario2.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Mario3.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\SpriteEditor.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Mario4.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	
+
+.\MY.LIB\Person.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sprite.h"\
+	
+
+.\SoldirOfMario.cpp : \
+	".\SoldirOfMario.h"\
+	".\SoldirOfMarioDlg.h"\
+	
+
+.\SoldirOfMario.rc : \
+	".\res\SoldirOfMario.ico"\
+	".\res\SoldirOfMario.rc2"\
+	
+
+.\SoldirOfMarioDlg.cpp : \
+	".\MY.LIB\DEBUG.H"\
+	".\MY.LIB\IDSound.h"\
+	".\MY.LIB\Idsprite.h"\
+	".\MY.LIB\Keyboard.h"\
+	".\MY.LIB\Level.h"\
+	".\MY.LIB\Log.h"\
+	".\MY.LIB\Mario.h"\
+	".\MY.LIB\Mouse.h"\
+	".\MY.LIB\Moveobj.h"\
+	".\MY.LIB\Person.h"\
+	".\MY.LIB\Rects.h"\
+	".\MY.LIB\Screen.h"\
+	".\MY.LIB\Sound.h"\
+	".\MY.LIB\Sprite.h"\
+	".\MY.LIB\Timer.h"\
+	".\MY.LIB\Total.h"\
+	".\SoldirOfMario.h"\
+	".\SoldirOfMarioDlg.h"\
+	
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	"c:\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	
