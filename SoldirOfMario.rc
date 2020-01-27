@@ -100,19 +100,20 @@ BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,106,8,21,20
     LTEXT           "Soldir Of Mario Version 1.0",IDC_STATIC,72,36,91,8,
                     SS_NOPREFIX
-    LTEXT           "Copyright (C) 1997-2011 Wiz",IDC_STATIC,69,54,97,8
+    LTEXT           "Copyright (C) 1997-2020 Wiz",IDC_STATIC,69,54,97,8
     DEFPUSHBUTTON   "OK",IDOK,105,69,24,11,WS_GROUP
 END
 
-IDD_SOLDIROFMARIO_DIALOG DIALOGEX 0, 0, 232, 82
-STYLE WS_POPUP | WS_VISIBLE
+IDD_SOLDIROFMARIO_DIALOG DIALOGEX 0, 0, 171, 117
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
 EXSTYLE WS_EX_APPWINDOW
 FONT 8, "MS Sans Serif"
 BEGIN
-    PUSHBUTTON      "Start Game",IDC_BUTTON_START_GAME,8,8,72,28,NOT 
+    PUSHBUTTON      "Start Game",IDC_BUTTON_START_GAME,10,5,147,67,NOT 
                     WS_VISIBLE
-    PUSHBUTTON      "About",IDC_BUTTON_ABOUT,84,8,72,28,NOT WS_VISIBLE
-    PUSHBUTTON      "Help",IDC_BUTTON_HELP,160,8,68,28,NOT WS_VISIBLE
+    PUSHBUTTON      "About",IDC_BUTTON_ABOUT,10,80,72,28,NOT WS_VISIBLE
+    PUSHBUTTON      "Help",IDC_BUTTON_HELP,85,80,68,28,NOT WS_VISIBLE
 END
 
 
@@ -141,14 +142,14 @@ BEGIN
         BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "SoldirOfMario\0"
+            VALUE "FileDescription", "Soldier Mario\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "SoldirOfMario\0"
-            VALUE "LegalCopyright", "Copyright (C) 1997-2011 Wiz (Ewgeny O. Lapshin)\0"
+            VALUE "InternalName", "Soldier Mario\0"
+            VALUE "LegalCopyright", "Copyright (C) 1997-2020 Wiz (Evgeny O. Lapshin)\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "SoldirOfMario.EXE\0"
+            VALUE "OriginalFilename", "Soldier Mario.EXE\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "SoldirOfMario Application\0"
+            VALUE "ProductName", "Soldier Mario Application\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
             VALUE "SpecialBuild", "\0"
         END
@@ -173,9 +174,9 @@ BEGIN
     IDD_SOLDIROFMARIO_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 225
+        RIGHTMARGIN, 164
         TOPMARGIN, 7
-        BOTTOMMARGIN, 75
+        BOTTOMMARGIN, 110
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -188,7 +189,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ABOUTBOX            "&About SoldirOfMario..."
+    IDS_ABOUTBOX            "&About Soldier Mario..."
 END
 
 #endif    // English (U.S.) resources
