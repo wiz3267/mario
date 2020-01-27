@@ -1,9 +1,9 @@
-//12:15 1500 ГІГЈГ¤
+//12:15 1500 тгд
 
 //Mario1.cpp
 ////////////////////////////////////////////////////////
 //						      //
-// MARIO1.CPP Г±Г®Г¤ГҐГ°Г¦ГЁГІ Г°ГҐГ¤ГЄГ® Г¬Г®Г¤ГЁГґГЁГ¶ГЁГ°ГіГҐГ¬Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ   //
+// MARIO1.CPP содержит редко модифицируемые функции   //
 //                                                    //1
 ////////////////////////////////////////////////////////
 
@@ -14,7 +14,7 @@
 
 int random(int);
 
-//================Г§Г ГЈГ°ГіГ§ГЄГ  Г±ГЇГ°Г Г©ГІГ®Гў==================
+//================загрузка спрайтов==================
 void SUPERMARIO::LoadSprites()
 {
 	int t,i;
@@ -24,9 +24,9 @@ void SUPERMARIO::LoadSprites()
 	Sprite.DeleteAllSprites();
 	LvSpr.DeleteAllSprites();
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЎГіГЄГўГ»
+	//загружаем буквы
 	{
-		//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЎГіГЄГўГ»
+		//загружаем буквы
 		im.Hei=24;
 		im.Len=24;
 		im.Attribute=SPRITE::SPRITETRANSPARENT;
@@ -36,7 +36,7 @@ void SUPERMARIO::LoadSprites()
 			BigFont.Load("graph\\fontbig.dat", i*24*24L,im);
 		}
 
-		//ГЁГ§Г¬ГҐГ­ГїГҐГ¬ Г±Г«ГіГ·Г Г©Г­Г® Г¶ГўГҐГІ ГЎГіГЄГў
+		//изменяем случайно цвет букв
 		for(i=0;i<28;i++)
 		{
 			int base=random(7)*16+144;
@@ -55,14 +55,14 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГІГҐГ±ГІГ»
+	//загружаем тесты
 	{
 		im.ID=SPRITE_TEST;
 		im.Attribute=0;
 		Sprite.LoadSpriteform("graph\\test.sp0",im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¶ГЁГґГ°Г»
+	//загружаем цифры
 	{
 		im.Hei=8;
 		im.Len=8;
@@ -75,9 +75,9 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//SPRITE_MUSHROOM_LIVE,		//ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© Г¦ГЁГ§Г­Гј
+	//SPRITE_MUSHROOM_LIVE,		//гриб, дающий жизнь
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© Г¦ГЁГ§Г­Гј
+	//загружаем гриб, дающий жизнь
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -86,7 +86,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 5*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г®Г°ГіГ¦ГЁГҐ Г±ГІГ°ГҐГ«Гі
+	//загружаем оружие стрелу
 	{
 		im.Hei=7;
 		im.Len=24;
@@ -95,7 +95,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\levelbox.dat", (BRICK::ARROW-1)*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г®Г°ГіГ¦ГЁГҐ Г­Г®Г¦ГЁГЄ
+	//загружаем оружие ножик
 	{
 		im.Hei=12;
 		im.Len=24;
@@ -104,7 +104,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\levelbox.dat", (BRICK::DAGGER-1)*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г±Г®ГЇГ«ГЁ
+	//загружаем сопли
 	{
 		im.Hei=14;
 		im.Len=24;
@@ -117,7 +117,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 76*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г°Г»ГЎГЄГі
+	//загружаем рыбку
 	{
 		im.ID=SPRITE_FISH1;
 		Sprite.LoadSpriteform("graph\\fish.sp0", im);
@@ -126,7 +126,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г®Г°ГіГ¦ГЁГҐ ГІГ®ГЇГ®Г°ГЁГЄ
+	//загружаем оружие топорик
 	{
 		im.Hei=20;
 		im.Len=24;
@@ -135,7 +135,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\levelbox.dat", (BRICK::AXE-1)*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГіГ«ГЁГІГЄГі
+	//загружаем улитку
 	{
 		im.ID=SPRITE_HELIX1;
 		Sprite.LoadSpriteform("graph\\helix.sp0", im);
@@ -144,7 +144,7 @@ void SUPERMARIO::LoadSprites()
 
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г ГЄГіГ«Гі
+	//загружаем акулу
 	{
 		im.ID=SPRITE_SHARK1;
 		im.Attribute=SCREEN::FLIP_HORZ | SCREEN::TRANSP;
@@ -155,7 +155,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЇГіГ§Г»Г°ГЁГЄГЁ
+	//загружаем пузырики
 	{
 		im.ID=SPRITE_BUBBLE1;
 		Sprite.LoadSpriteform("graph\\bubble.sp0", im);
@@ -167,7 +167,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.LoadSpriteform("graph\\bubble.sp3", im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЄГ®Г±Г¬Г®Г­Г ГўГІГ 
+	//загружаем космонавта
 	{
 		im.Hei=48;
 		im.Len=48;
@@ -190,7 +190,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГўГ§Г°Г»Гў
+	//загружаем взрыв
 	{
 		im.Hei=40;
 		im.Len=40;
@@ -209,7 +209,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¦ГҐГ«ГІГ®ГЈГ® Г®Г°Г«Г 
+	//загружаем желтого орла
 	{
 		im.Hei=48;
 		im.Len=48;
@@ -220,7 +220,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\spr1.dat",20,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЈГ®Г«Г®ГўГі
+	//загружаем голову
 	{
 		im.Attribute=SPRITE::SPRITETRANSPARENT;
 		im.ID=SPRITE_HEAD1;
@@ -233,7 +233,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.LoadSpriteform("graph\\head.sp2",im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© ГіГўГҐГ«ГЁГ·ГҐГ­ГЁГҐ
+	//загружаем гриб, дающий увеличение
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -242,7 +242,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 50*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г Г­ГЁГ¬Г Г¶ГЁГѕ Г®ГІГЄГ°Г»ГўГ Г­ГЁГї Г¤ГўГҐГ°ГЁ
+	//загружаем анимацию открывания двери
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -254,7 +254,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬, ГЄГ ГЄ Г®Г±Г»ГЇГ ГҐГІГ±Гї ГЄГЁГ°ГЇГЁГ·ГЁГЄ
+	//загружаем, как осыпается кирпичик
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -266,7 +266,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬, ГЄГ ГЄ Г°Г Г§Г°ГіГёГ ГҐГІГ±Гї Г±ГІГ°ГҐГ«Г 
+	//загружаем, как разрушается стрела
 	{
 		im.Hei=12;
 		im.Len=24;
@@ -279,7 +279,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г§ГўГҐГ§Г¤Гі
+	//загружаем звезду
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -288,7 +288,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 51*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¶ГўГҐГІГ®ГЄ
+	//загружаем цветок
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -297,7 +297,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 52*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬Г Г«ГҐГ­ГјГЄГіГѕ Г¬Г®Г­ГҐГІГЄГі
+	//загружаем маленькую монетку
 	{
 		im.Hei=12;
 		im.Len=24;
@@ -306,7 +306,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 34*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г«ГЁГґГІ
+	//загружаем лифт
 	{
 		im.Hei=15;
 		im.Len=24;
@@ -315,7 +315,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 47*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГІГҐГ«ГҐГ¦ГЄГі
+	//загружаем тележку
 	{
 		im.Hei=13;
 		im.Len=24;
@@ -327,7 +327,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГІГіГ§ГҐГ¬Г¶Г 
+	//загружаем туземца
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -339,7 +339,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г·ГҐГ¬ Г±ГІГ°ГҐГ«ГїГҐГІ Mario
+	//загружаем чем стреляет Mario
 	{
 		im.Hei=12;
 		im.Len=24;
@@ -351,7 +351,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г«ГҐГІГїГ№ГҐГЈГ® Г¬Г Г°ГЁГ®
+	//загружаем летящего марио
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -360,7 +360,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 28*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬ГҐГ°ГІГўГ®ГЈГ® Г¬Г Г°ГЁГ®
+	//загружаем мертвого марио
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -369,7 +369,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 13*24*24L,im);
 	}
 
-    //Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬Г®Г±ГІГЁГЄ
+    //загружаем мостик
 	{
 		im.Hei=15;
 		im.Len=24;
@@ -378,14 +378,14 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 64*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬Г®Г±ГІГЁГЄ Г¤Г«Гї ГўГ®Г¤Г»
+	//загружаем мостик для воды
 	{
 		im.Attribute=SPRITE::SPRITETRANSPARENT;
 		im.ID=SPRITE_WATERBRIDG;
 		Sprite.LoadSpriteform("graph\\wbridg.spr", im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЇГІГЁГ·ГЄГі
+	//загружаем птичку
 	{
 		im.Attribute=SPRITE::SPRITETRANSPARENT;
 		im.ID=SPRITE_BIRD1;
@@ -394,14 +394,14 @@ void SUPERMARIO::LoadSprites()
 		Sprite.LoadSpriteform("graph\\bird.sp1", im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г±ГЄГҐГ«ГҐГІГ 
+	//загружаем скелета
 	{
 		im.Attribute=SPRITE::SPRITETRANSPARENT;
 		im.ID=SPRITE_SKELETON;
 		Sprite.LoadSpriteform("graph\\skeleton.sp0", im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬Г Г°ГЁГ®
+	//загружаем марио
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -413,7 +413,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г§ГіГЎГ Г±ГІГ»Г© Г¶ГўГҐГІГ®ГЄ
+	//загружаем зубастый цветок
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -425,7 +425,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГµГ®Г¤ГїГ№ГЁГ© ГЈГ°ГЁГЎГ®ГЄ
+	//загружаем ходящий грибок
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -437,7 +437,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г§Г«Г®ГЎГ­Г®ГЈГ® ГҐГ¦ГЁГЄГ 
+	//загружаем злобного ежика
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -449,7 +449,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г‘Г†ГЂГ’Г›Г‰ ГµГ®Г¤ГїГ№ГЁГ© ГЈГ°ГЁГЎГ®ГЄ
+	//загружаем СЖАТЫЙ ходящий грибок
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -459,7 +459,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЏГЂГЌГ–Г€ГђГњ
+	//загружаем ПАНЦИРЬ
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -468,7 +468,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 44*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г—Г…ГђГ…ГЏГЂГ•Г“
+	//загружаем ЧЕРЕПАХУ
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -480,7 +480,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г„ГђГЂГЉГЋГЌГЂ
+	//загружаем ДРАКОНА
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -492,7 +492,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г«ГҐГІГїГ№ГҐГЈГ® Г¤Г°Г ГЄГ®Г­Г 
+	//загружаем летящего дракона
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -501,7 +501,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\sprite.dat", 35*24*24L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЄГ ГЄ Г¬Г®Г­ГҐГІГЄГ  ГўГ°Г Г№Г ГҐГІГ±Гї
+	//загружаем как монетка вращается
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -514,7 +514,7 @@ void SUPERMARIO::LoadSprites()
 	}
 
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г±ГўГЁГ­ГјГѕ
+	//загружаем свинью
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -526,7 +526,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГґГ®Г­
+	//загружаем фон
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -539,7 +539,7 @@ void SUPERMARIO::LoadSprites()
 		}
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГіГЄГ Г§Г ГІГҐГ«Гј Гў Г¬ГҐГ­Гѕ
+	//загружаем указатель в меню
 	{
 		im.Hei=8;
 		im.Len=8;
@@ -548,7 +548,7 @@ void SUPERMARIO::LoadSprites()
 		Sprite.Load("graph\\font.dat", 3*8*8L,im);
 	}
 
-	//Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ Г¬Г Г«ГҐГ­ГјГЄГЁГ© ГЄГЁГ°ГЇГЁГ·
+	//загружаем маленький кирпич
 	{
 		im.Hei=24;
 		im.Len=24;
@@ -634,13 +634,13 @@ DWORD SoundDeCoding(CString command, CString check)
 
 
 
-//************* Г§Г ГЈГ°ГіГ§ГЄГ  Г§ГўГіГЄГ®Гў ******************
+//************* загрузка звуков ******************
 void SUPERMARIO::LoadSounds(void)
 {
 
 	scr.clear();
 
-	Msg(" Г‡ГЂГѓГђГ“Г‡ГЉГЂ, ГЏГЋГ†ГЂГ‹Г“Г‰Г‘Г’ГЂ, ГЏГЋГ„ГЋГ†Г„Г€Г’Г… ... ",9);
+	Msg(" ЗАГРУЗКА, ПОЖАЛУЙСТА, ПОДОЖДИТЕ ... ",9);
 	scr.update();
 
 	CString lame1="lame.exe --decode zastavka.mp3 zastavka.wav";
@@ -650,28 +650,28 @@ void SUPERMARIO::LoadSounds(void)
 	SoundDeCoding(lame1, "zastavka.wav");
 
 	scr.clear();
-	Msg(" Г‡ГЂГѓГђГ“Г‡ГЉГЂ 1 Г‡ГЂГ‚Г…ГђГГ…ГЌГЂ ", 9);
+	Msg(" ЗАГРУЗКА 1 ЗАВЕРШЕНА ", 9);
 	scr.update();
 
 	
 	SoundDeCoding(lame2, "loop.wav");
 
 	scr.clear();
-	Msg(" Г‡ГЂГѓГђГ“Г‡ГЉГЂ 2 Г‡ГЂГ‚Г…ГђГГ…ГЌГЂ ", 9);
+	Msg(" ЗАГРУЗКА 2 ЗАВЕРШЕНА ", 9);
 	scr.update();
 
 	
 	SoundDeCoding(lame3,"loop_zachita.wav");
 
 	scr.clear();
-	Msg(" Г‡ГЂГѓГђГ“Г‡ГЉГЂ 3 Г‡ГЂГ‚Г…ГђГГ…ГЌГЂ ", 9);
+	Msg(" ЗАГРУЗКА 3 ЗАВЕРШЕНА ", 9);
 	scr.update();
 
 
 	SOUND::MONOSTEREO ms=SOUND::MONOSTEREO::MONO;
 	SOUND::BITCOUNT bc=SOUND::BITCOUNT::BIT8;
 	int f=11025;
-	int dataoffset=46; //Г±Г¬ГҐГ№ГҐГ­ГЁГҐ Г¤Г® Г¤Г Г­Г­Г»Гµ Г®ГІ Г­Г Г·Г Г«Г  ГґГ Г©Г«Г (ГЇГ°Г®ГЇГіГ±ГЄ Г§Г ГЈГ®Г«Г®ГўГЄГ  WAV)
+	int dataoffset=46; //смещение до данных от начала файла(пропуск заголовка WAV)
 	Sound.load("sound\\pop.wav", f, ms, bc,		SND_POP, dataoffset);
 	Sound.load("sound\\xplode2.wav", f, ms, bc,	SND_XPLODE, dataoffset);
 	Sound.load("sound\\gem.wav", f, ms, bc,		SND_NEWLIVE, dataoffset);
@@ -691,8 +691,7 @@ void SUPERMARIO::LoadSounds(void)
 	Sound.load("sound\\gfx3.wav", f, ms, bc,	SND_GFX3, dataoffset);
 	Sound.load("sound\\pigegrin.wav", f, ms, bc,SND_PIGEGRIN, dataoffset);
 
-	/*zx3267 comment for fast loading
-	Sound.load("sound\\zastavka.wav", 44100, 
+/*	Sound.load("sound\\zastavka.wav", 44100, 
 		SOUND::MONOSTEREO::STEREO, SOUND::BITCOUNT::BIT16, SND_ZASTAVKA, dataoffset);
 	
 	Sound.load("sound\\loop.wav",44100, SOUND::MONOSTEREO::STEREO, 
@@ -700,11 +699,10 @@ void SUPERMARIO::LoadSounds(void)
 
 	Sound.load("sound\\loop_zachita.wav",44100, SOUND::MONOSTEREO::MONO, 
 		SOUND::BITCOUNT::BIT16,SND_GHOTIC_FAST, dataoffset);
-	*/
-
+*/
 }
 
-//=========== Г§Г ГЈГ°ГіГ§ГЄГ  Г¬ГіГ§Г»ГЄГЁ ==============
+//=========== загрузка музыки ==============
 void SUPERMARIO::LoadMusic()
 {
 	song[0]="music\\main.mid";
@@ -743,12 +741,12 @@ void SUPERMARIO::BIGSTRING::Show(int x,int y)
 	}
 }
 
-//Г°ГЁГ±ГіГҐГІ Г±ГІГ°Г®ГЄГі Г±Г®Г±ГІГ®ГїГ­ГЁГї Г±ГіГЇГҐГ° Г¬Г Г°ГЁГ®
+//рисует строку состояния супер марио
 void SUPERMARIO::DrawStateline()
 {
     int n=0;
 
-    //ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ Г·ГЁГ±Г«Г® Г±Г®ГЎГ°Г Г­Г­Г»Гµ ГЄГ Г°ГІ
+    //показываем число собранных карт
 /*	{
     int dx=320-20*3-10, dy=5, len=20, hei=10;
     UINT t=0,c;
@@ -786,11 +784,11 @@ void SUPERMARIO::DrawStateline()
 
 	scr.color=16;
 	scr.locateXY(1*4,4);
-	scr<<"ГЋГ—ГЉГ€";
+	scr<<"ОЧКИ";
 
 	scr.color=15;
 	scr.locateXY(1*4-1,4-1);
-	scr<<"ГЋГ—ГЉГ€";
+	scr<<"ОЧКИ";
 
 	scr.color=16;
 	scr.locateXY(1*4,4+10);
@@ -800,7 +798,7 @@ void SUPERMARIO::DrawStateline()
 	scr.locateXY(1*4-1,4+10-1);
 	scr.putNumb(Score,6);
 
-    //ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ Г¬Г®Г№Г­Г®Г±ГІГј Г±ГІГ°ГҐГ«, ГЄГЁГ­Г¦Г Г«Г®Гў ГЁ ГІГ®ГЇГ®Г°Г®Гў
+    //показываем мощность стрел, кинжалов и топоров
     /*{
 		scr.setcolor(14);
 		Sprite.Show(160,0, SPRITE_ARROW);
@@ -816,7 +814,7 @@ void SUPERMARIO::DrawStateline()
 		scr.setcolor(15);
 	}*/
 
-    int k=SPRITE_ARROW;	//ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ Г±ГІГ°ГҐГ«Г 
+    int k=SPRITE_ARROW;	//по умолчанию стрела
     switch (Arms)
     {
 		case ARROW:
@@ -844,11 +842,11 @@ void SUPERMARIO::DrawStateline()
 
 	scr.color=16;
     scr.locateXY(34*8,4);
-	scr << "Г‚ГђГ…ГЊГџ";
+	scr << "ВРЕМЯ";
 
 	scr.color=15;
 	scr.locateXY(34*8-1,4-1);
-	scr << "Г‚ГђГ…ГЊГџ";
+	scr << "ВРЕМЯ";
 
 	scr.color=16;
 	scr.locateXY(35*8,4+10);
@@ -860,12 +858,12 @@ void SUPERMARIO::DrawStateline()
 	
 }
 
-//Г±Г®Г§Г¤Г ГІГј Г®Г·ГЄГЁ
-//score - Г·ГЁГ±Г«Г® Г®Г·ГЄГ®Гў
-//svisor - Г±Г±Г»ГЄГ  Г­Г  Г±ГіГЇГҐГ°ГўГЁГ§Г®Г° Г®ГЎГєГҐГЄГІГ®Гў
-// ob - Г±Г±Г«Г»ГЄГ­Г  Г­Г  Г®ГЎГ»Г·Г­Г»Г© Г®ГЎГєГҐГЄГІ. Г§Г¤ГҐГ±Гј ГЁГ±ГЇГ®Г«ГјГ§ГіГѕГІГ±Гї TimeLive, x,y - ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ»
-// ГЇГҐГ°ГўГ®Г© Г¶Г»ГґГ°Г». Г‚Г±ГҐ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЄГ ГЄ Г®ГЎГ»Г·Г­Г®
-//ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГ¬ Г°ГҐГЄГіГ°Г±ГЁГѕ
+//создать очки
+//score - число очков
+//svisor - ссыка на супервизор объектов
+// ob - сслыкна на обычный объект. здесь используются TimeLive, x,y - координаты
+// первой цыфры. Все остальные параметры как обычно
+//используем рекурсию
 void SUPERMARIO::CreateScore(int score, ANIM & svisor, ANIM & ob)
 {
         int t=score % 10;
@@ -880,18 +878,18 @@ void SUPERMARIO::CreateScore(int score, ANIM & svisor, ANIM & ob)
 
 
 
-//===================Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» Гі Г·ГіГ¦ГЁГµ==================
+//===================обновляем координаты у чужих==================
 void SUPERMARIO::ALIEN::RenewXY()
 {
-	//Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГі X
+	//обновляем координату X
 	x+=Speedx;
 	Speedx+=Acceleratx;
 	RenewRect();
 
-	//ГҐГ±Г«ГЁ Г·ГіГ¦Г®Г© Г­ГҐ Г§Г ГЈГ ГёГҐГ­
+	//если чужой не загашен
 	if (~Status & DEATH)
 	{
-		//ГҐГ±Г«ГЁ Г­ГҐ ГіГ¤Г Г«Г®Г±Гј ГЇГ°Г®Г©ГІГЁ Г·ГҐГ°ГҐГ§ ГЇГ°ГҐГЈГ°Г Г¤Г»
+		//если не удалось пройти через преграды
 		if (!chk_all(*this,0) )
 		{
 			if (Speedx>0)
@@ -909,19 +907,19 @@ void SUPERMARIO::ALIEN::RenewXY()
 
 	RenewRect();
 
-	//Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГі Y
+	//обновляем координату Y
 	y+=Speedy;
 	Speedy+=Acceleraty;
 	RenewRect();
 
-//	int collis;	//ГЎГ»Г«Г® Г«ГЁ Г±ГІГ®Г«ГЄГ­Г®ГўГҐГ­ГЁГҐ Г± ГЇГ®Г«Г®Г¬
+//	int collis;	//было ли столкновение с полом
 
 	if (~Status & DEATH)
 	{
-		//ГҐГ±Г«ГЁ Г­ГҐ ГіГ¤Г Г«Г®Г±Гј ГЇГ°Г®Г©ГІГЁ Г·ГҐГ°ГҐГ§ ГЇГ°ГҐГЈГ°Г Г¤Г»
+		//если не удалось пройти через преграды
 		if (!chk_all(*this,0) )
 		{
-			//Г«ГҐГІГҐГ« ГўГ­ГЁГ§
+			//летел вниз
 			if (Speedy>0)
 			{
 				y-=int(y)%24;
@@ -937,14 +935,14 @@ void SUPERMARIO::ALIEN::RenewXY()
 
 	//ANIM::RenewXY();
 
-	//ГҐГ±Г«ГЁ Г·ГіГ¦Г®Г© Г¬ГҐГІГ°ГІГўГ»Г© - Г­ГЁГ·ГҐГЈГ® Г­ГҐ Г¤ГҐГ«Г ГІГј
+	//если чужой метртвый - ничего не делать
 	if ( Status & DEATH ) return;
 
 
 
-	//ГЁГ­Г Г·ГҐ Г·ГіГ¦Г®Г© Г¦ГЁГўГ®Г©
+	//иначе чужой живой
 
-	//************Г­ГҐ Г¤Г ГҐГ¬ Г·ГіГ¦ГЁГ¬ ГЇГ°Г®Г©ГІГЁ Г·ГҐГ°ГҐГ§ ГЇГ°ГҐГЈГ°Г Г¤Г»********
+	//************не даем чужим пройти через преграды********
 		  if ( ! chk_left(*this,0) )	Speedx=fabs(Speedx);
 
 		  if ( !chk_right(*this,0) )	Speedx=-fabs(Speedx);
@@ -955,30 +953,30 @@ void SUPERMARIO::ALIEN::RenewXY()
 		ob.RenewRect();
 
 
-		//ГҐГ±Г«ГЁ ГЇГ®Г¤ Г·ГіГ¦ГЁГ¬ Г­ГЁГ·ГҐГЈГ® Г­ГҐГІ
+		//если под чужим ничего нет
 		if ( chk_down(*this,0) )
 		{
-			//Г·ГіГ¦Г®Г© ГЇГ Г¤Г ГҐГІ
+			//чужой падает
 			Acceleraty=0.2;
 		  }
 
-	//ГҐГ±Г«ГЁ ГўГ­ГЁГ§Гі ГўГЇГҐГ°ГҐГ¤ГЁ ГЇГіГ±ГІГ® Г­Г  Г®Г¤Г­Гі ГЄГ«ГҐГІГЄГі
+	//если внизу впереди пусто на одну клетку
 		if ( chk_down(ob,0) )
 		{
-		//ГҐГ±Г«ГЁ ГўГ­ГЁГ§Гі ГЇГіГ±ГІГ® ГҐГ№ГҐ Г­Г  Г­ГҐГ±ГЄГ®Г«ГјГЄГ® ГЄГ«ГҐГІГ®ГЄ
+		//если внизу пусто еще на несколько клеток
 					 if ( scanlevel_down(ob, 0) )
 		{
-			//Г¬ГҐГ­ГїГҐГ¬ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ ГЇГ® Г®Г±ГЁ ГЋГµ Г­Г  ГЇГ°Г®ГІГЁГўГ®ГЇГ®Г«Г®Г¦Г­Г®ГҐ
+			//меняем направление по оси Ох на противоположное
 			Speedx*=-1;
 		}
-		//ГЁГ­Г Г·ГҐ ГўГ­ГЁГ§Гі Г­Г  ГЎГ«ГЁГ¦Г Г©ГёГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГ® ГЄГ«ГҐГІГ®ГЄ Г·ГІГ®-ГІГ® ГҐГ±ГІГј
+		//иначе внизу на ближайшие несколько клеток что-то есть
 		{
 			//Acceleraty=0;
 		 }
 
 
 	}
-	//ГЁГ­Г Г·ГҐ ГўГ­ГЁГ§Гі Г¤Г Г¦ГҐ Г­Г  Г®Г¤Г­Гі ГЄГ«ГҐГІГЄГі Г·ГІГ®-ГІГ® ГҐГ±ГІГј
+	//иначе внизу даже на одну клетку что-то есть
 	else
 	{
 			//y-=int(y)%24;
@@ -994,11 +992,11 @@ void SUPERMARIO::MARIO::RenewXY()
 	Supermario.MarioRenewXY(*this);
 }
 
-//========= 'RenewXY()' - Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ Гі Г¬Г Г°ГЁГ® ============2
+//========= 'RenewXY()' - обновление координат у марио ============2
 void SUPERMARIO::MarioRenewXY(MARIO &rk)
 {
-	//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г¬ГҐГ°ГІГўГ»Г©, Г­Г Г¤Г® ГЇГ°Г®Г±ГІГ® Г®ГЎГ­Г®ГўГ«ГїГІГј
-	// ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГЎГҐГ§ ГўГ±ГїГЄГЁГµ ГЇГ°Г®ГўГҐГ°Г®ГЄ
+	//если марио мертвый, надо просто обновлять
+	// координаты без всяких проверок
 	if (rk.Status & MARIO_DEATH)
 	{
 		rk.PERSON::RenewXY();
@@ -1006,113 +1004,113 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 		return;
 	}
 
-	//Г¬Г Г°ГЁГ® Г¤Г®Г«Г¦ГҐГ­ ГёГҐГўГҐГ«ГЁГІГј Г­Г®ГЈГ Г¬ГЁ Гў Г±Г®Г®ГІГўГҐГ±ГІГўГЁГЁ Г±Г® Г±ГЄГ®Г°Г®Г±ГІГјГѕ
-	//ГҐГ±Г«ГЁ Г­ГҐ ГЇГ®Г¤ ГўГ®Г¤Г®Г©
+	//марио должен шевелить ногами в соотвествии со скоростью
+	//если не под водой
 	if (~LevelStatus & LEVEL_UNDERWATER)
 	{
 		rk.FrameSpeed=fabs(rk.Speedx)/6.0;
 	}
-	//ГЁГ­Г Г·ГҐ ГЇГ®Г¤ ГўГ®Г¤Г®Г©
+	//иначе под водой
 	else
 	{
-		//ГёГҐГўГҐГ«ГЁГІ Г­Г®ГЈГ Г¬ГЁ Г¬ГҐГ¤Г«ГҐГ­Г­Г®
+		//шевелит ногами медленно
 		rk.FrameSpeed=fabs(rk.Speedx)/10.0;
 	}
 
-	//ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬ Mario Г­Г  Г­Г®ГўГ®ГҐ Г¬ГҐГ±ГІГ® ГЇГ® Г®Г±ГЁ Ox
+	//перемещаем Mario на новое место по оси Ox
 	rk.x+=rk.Speedx;
 
-	//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® ГЇГ°ГЁГ«ГҐГЇГ«ГҐГ­ Г­Г Г¤Г® Г±Г¬ГҐГ±ГІГЁГІГј ГҐГЈГ® Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г®
-	//Г«ГЁГґГІГ 
+	//если марио прилеплен надо сместить его относительно
+	//лифта
 	if (rk.Status & MARIO_CLAMMY)
 	{
 		rk.ClammyX+=rk.Speedx;
 	}
 
-	//Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ ГҐГЈГ® Г¬ГҐГ±ГІГ®ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ
+	//обновляем его местоположение
 	rk.RenewRect();
 
-	//ГҐГ±Г«ГЁ ГЇГ®Г±Г«ГҐ ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГї ГЇГ® Г®Г±ГЁ Ox Mario Г®ГЄГ Г§Г Г«Г±Гї
-	//Гў ГЄГЁГ°ГЇГЁГ·Г Гµ
+	//если после перемещения по оси Ox Mario оказался
+	//в кирпичах
 	if ( ! chk_all(rk,0) )
 	{
 		//Debug("Can't move on Ox");
 
-		//ГўГ®Г§ГўГ°Г Г№Г ГҐГ¬ ГҐГЈГ® Г­Г  Г¬ГҐГ±ГІГ® ГЇГ® Г®Г±ГЁ oX
+		//возвращаем его на место по оси oX
 		rk.x-=rk.Speedx;
 		//ClammyX-=Speedx*SPEED_UNIT;
 
-		//Г®ГЎГ­ГіГ«ГїГҐГ¬ Г±ГЄГ®Г°Г®Г±ГІГј
+		//обнуляем скорость
 		rk.Speedx=0;
 
-		//Г®ГЎГ­ГіГ«ГїГҐГ¬ ГіГ±ГЄГ®Г°ГҐГ­ГЁГҐ
+		//обнуляем ускорение
 		rk.Acceleratx=0;
 
-		// Г‚ГЂГ†ГЌГЋ ! ГЋГЎГ­Г®ГўГ«ГїГҐГ¬ ГҐГЈГ® Г¬ГҐГ±ГІГ®ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ
+		// ВАЖНО ! Обновляем его местоположение
 		rk.RenewRect();
 	}
-	//ГЁГ­Г Г·ГҐ ГЇГ®Г±Г«ГҐ ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГї ГЇГ® Г®Г±ГЁ Ox Mario Г±ГўГ®ГЎГ®Г¤ГҐГ­
+	//иначе после перемещения по оси Ox Mario свободен
 	else
 	{
-		//ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±ГЄГ®Г°Г®Г±ГІГј MarioГ  ГЇГ® Г®Г±ГЁ Ox
+		//увеличиваем скорость Marioа по оси Ox
 		rk.Speedx+=rk.Acceleratx;
 
-		//ГҐГ±Г«ГЁ ГЁГ¤ГҐГІ ГЁ (Г­ГҐ Г«ГҐГІГЁГІ ГЁГ«ГЁ ГЇГ®Г¤ ГўГ®Г¤Г®Г©)
+		//если идет и (не летит или под водой)
 		if (rk.Speedx && (!rk.Speedy || LevelStatus & LEVEL_UNDERWATER))
 		{
-			//ГЇГіГ±ГІГј ГёГҐГўГҐГ«ГЁГІ Г­Г®ГЈГ Г¬ГЁ
+			//пусть шевелит ногами
 			rk.RenewFrame();
 		}
 	}
 
-	//ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬ Mario Г­Г  Г­Г®ГўГ®ГҐ Г¬ГҐГ±ГІГ® ГЇГ® Г®Г±ГЁ Oy
+	//перемещаем Mario на новое место по оси Oy
 	rk.y+=rk.Speedy;
 	rk.RenewRect();
 
-	//ГҐГ±Г«ГЁ ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГҐ ГЇГ® Г®Г±ГЁ oY Г®ГЄГ Г§Г Г«Г®Г±Гј Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г»Г¬
-	//ГЁГ§-Г§Г  ГЄГЁГ°ГЇГЁГ·ГЁГҐГ©
+	//если перемещение по оси oY оказалось невозможным
+	//из-за кирпичией
 	if ( ! chk_all(rk,0) )
 	{
 		//Debug("Can't move on Oy");
 		//rk.y-=rk.Speedy;
 
-		//ГҐГ±Г«ГЁ Mario Г«ГҐГІГҐГ« ГўГ­ГЁГ§
+		//если Mario летел вниз
 		if (rk.Speedy>0)
 		{
-			//ГўГ®Г§ГўГ°Г Г№Г ГҐГ¬ ГҐГЈГ® Г­Г  Г¬ГҐГ±ГІГ® ГЇГ® Г®Г±ГЁ oy
+			//возвращаем его на место по оси oy
 			rk.y-=int(rk.y)%24;
-			//Г®ГЎГ­ГіГ«ГїГҐГ¬ Г±ГЄГ®Г°Г®Г±ГІГј
+			//обнуляем скорость
 			rk.Speedy=0;
-			//Г®ГЎГ­ГіГ«ГїГҐГ¬ ГіГ±ГЄГ®Г°ГҐГ­ГЁГҐ
+			//обнуляем ускорение
 			rk.Acceleraty=0;
 		}
-		//Mario Г«ГҐГІГҐГ« ГўГўГҐГ°Гµ
+		//Mario летел вверх
 		else
 		{
 			Sound.play(SND_POP1);
-			//Г®Г·ГҐГ­Гј ГІГ®Г·Г­Г® Г¶ГҐГ­ГІГ°ГіГҐГ¬ Mario
+			//очень точно центруем Mario
 			rk.y=rk.y-int(rk.y)%24+24;
 
-			//Г®ГЎГ­ГіГ«ГїГҐГ¬ ГўГ±ГҐ
-			//(Г  ГІГ® ГЎГіГ¤ГҐГІ Г¤Г°Г®Г¦Г ГІГј)
+			//обнуляем все
+			//(а то будет дрожать)
 			rk.Speedy=0;
 			rk.Acceleraty=0;
 		}
 	}
-	//ГЁГ­Г Г·ГҐ Г­ГЁГ·ГҐГЈГ® Г­ГҐ Г¬ГҐГёГ ГҐГІ ГЇГ Г¤Г ГІГј...
+	//иначе ничего не мешает падать...
 	else
 	{
-		//ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±ГЄГ®Г°Г®Г±ГІГј MarioГ  ГЇГ® Г®Г±ГЁ Oy
+		//увеличиваем скорость Marioа по оси Oy
 		rk.Speedy+=rk.Acceleraty;
 	}
 
-	//Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ Г±ГІГ°ГіГЄГІГіГ°Гі Rect
+	//обновляем структуру Rect
 	rk.RenewRect();
 
-	//ГҐГ±Г«ГЁ ГЇГ®Г¤ Mario Г­Г ГµГ®Г¤ГЁГІГ±Гї ГЇГіГ±ГІГ®ГІГ  ГЁ Г­ГҐ ГЇГ Г¤Г ГҐГІ
+	//если под Mario находится пустота и не падает
 	if ( chk_down(rk,0) && !rk.Acceleraty )
 	{
-		//ГўГҐГ«ГЁГ¬ Г¬Г Г°ГЁГ® ГЇГ Г¤Г ГІГј
+		//велим марио падать
 		//?????
 		if (LevelStatus & LEVEL_UNDERWATER)
 			rk.Acceleraty=0.09;
@@ -1121,8 +1119,8 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 	}
 
 	//rk.Acceleraty=0.2;
-	//ГЁ Г­Г ГЇГ®Г±Г«ГҐГ¤Г®ГЄ
-	//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г«ГҐГІГЁГІ ГЁ Г­ГҐ ГЇГ®Г¤ ГўГ®Г¤Г®Г©
+	//и напоследок
+	//если марио летит и не под водой
 	if (rk.Speedy && ~LevelStatus & LEVEL_UNDERWATER)
 	{
 		   if (~rk.Status & MARIO_BIG)
@@ -1135,17 +1133,17 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 		rk.SpriteIndex=int(rk.FrameCurrent);
 	}
 
-	//ГҐГ±Г«ГЁ ГЇГ Г¤Г ГҐГІ Г±Г«ГЁГёГЄГ®Г¬ ГЎГ»Г±ГІГ°Г®, Г®ГЈГ°Г Г­ГЁГ·ГЁГўГ ГҐГ¬ Г±ГЄГ®Г°Г®Г±ГІГј
-	//ГҐГ±Г«ГЁ ГЇГ®Г¤ ГўГ®Г¤Г®Г©
+	//если падает слишком быстро, ограничиваем скорость
+	//если под водой
 	if ( LevelStatus & LEVEL_UNDERWATER)
 	{
 		if (rk.Speedy>3) rk.Speedy=3;
-		//ГҐГ±Г«ГЁ Г­Г  ГўГ®Г§Г¤ГіГµГҐ
+		//если на воздухе
 		else
 		if (rk.Speedy>7) rk.Speedy=7;
 	}
 
-	//ГҐГ±Г«ГЁ ГЇГ®Г¤ ГўГ®Г¤Г®Г©, Г­ГҐ Г¤Г ГҐГ¬ ГЇГ®Г¤Г­ГїГІГјГ±Гї ГўГ»ГёГҐ ГўГ®Г¤Г»
+	//если под водой, не даем подняться выше воды
 	if (LevelStatus & LEVEL_UNDERWATER)
 	{
 		if (rk.y<0) rk.y=0;
@@ -1153,7 +1151,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 
 	//************************************************
-	//************** Г±Г®ГЎГЁГ°Г ГҐГ¬ Г°Г Г§Г­Г»ГҐ ГЇГ°ГЁГ§Г»************
+	//************** собираем разные призы************
 	//************************************************
 	{
 
@@ -1167,7 +1165,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 		rk2.Rect.Bottom-=N;
 		#undef N
 
-		//Г±Г®ГЎГ°Г Г«ГЁ Г¬Г®Г­ГҐГІГЄГі
+		//собрали монетку
 		if( (Level.ReadXY(x,y)  & LEVEL::MASK) == BRICK::MONEY
 		 && !(Level.ReadXY(x,y) & LEVEL::ALIEN)
 		)
@@ -1175,7 +1173,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 			Level.WriteXY(x,y,0);
 
 			MoneyCounter++;
-			//Г§Г  100 Г¬Г®Г­ГҐГІГ®ГЄ Г¤Г ГҐГ¬ Г¦ГЁГ§Г­Гј
+			//за 100 монеток даем жизнь
 			if (MoneyCounter>=100)
 			{
 				MoneyCounter=0;
@@ -1184,7 +1182,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 			}
 			else    Sound.play(SND_APPLE);
 
-			//Г®Г·ГЄГЁ Г§Г ГЎГ ГўГ­Г® ГЇГ®Г¤ГЇГ°Г»ГЈГЁГўГ ГѕГІ
+			//очки забавно подпрыгивают
 			ANIM ob;
 			int x=rk2.Rect.Left,y=rk2.Rect.Top;
 			ob.x=x-x%24;
@@ -1197,13 +1195,13 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 			Score+=200;
 		}
 
-		//Г±Г®ГЎГ°Г Г«ГЁ ГЄГ°ГЁГ±ГІГ Г«Г«
+		//собрали кристалл
 		if( chk_all_transp(rk2,BRICK::CRYSTAL) )
 		{
 			Level.WriteXY(rk2.Rect.Left,rk2.Rect.Top,0);
 
 			MoneyCounter++;
-			//Г§Г  7-Г®Г© ГЄГ°ГЁГ±ГІГ Г« Г¤Г ГҐГ¬ Г¦ГЁГ§Г­Гј
+			//за 7-ой кристал даем жизнь
 			if (MoneyCounter>=7)
 			{
 				MoneyCounter=0;
@@ -1214,7 +1212,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 		}
 
-		//19 may 2008 Г±Г®ГЎГ°Г Г«ГЁ Г§ГҐГ«ГјГҐ
+		//19 may 2008 собрали зелье
 		if( chk_all_transp(rk2,111) )
 		{
 			Level.WriteXY(rk2.Rect.Left,rk2.Rect.Top,0);
@@ -1224,15 +1222,15 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 		}
 
 
-		//Г±Г®ГЎГ°Г Г«ГЁ ГЄГ Г°ГІГі
+		//собрали карту
 		if( (Level.ReadXY(int(rk2.x+12),int(rk2.y+12)) & LEVEL::MASK) == BRICK::MAP )
 		{
 			MapCounter++;
 
-			//Г±Г®ГЎГ°Г Г«ГЁ ГўГ±Гѕ ГЄГ Г°ГІГі
+			//собрали всю карту
 			if (MapCounter >= 6)
 			{
-				OldArms=Arms;	//Г±Г®ГµГ°Г Г­ГїГҐГ¬ Г±ГІГ Г°Г®ГҐ Г®Г°ГіГ¦ГЁГҐ
+				OldArms=Arms;	//сохраняем старое оружие
 				Arms=SALIVA;
 				ArmsPower=SalivaPower;
 			}
@@ -1250,10 +1248,10 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 		}
 
-		 //Г±Г®ГЎГЁГ°Г ГҐГ¬ Г®Г°ГіГ¦ГЁГҐ, ГҐГ±Г«ГЁ Г®Г°ГіГ¦ГЁГҐ Г­ГҐ Г±Г®ГЇГ«ГЁ
+		 //собираем оружие, если оружие не сопли
 		 if (Arms != SALIVA)
 		 {
-			//Г±Г®ГЎГ°Г Г«ГЁ Г±ГІГ°ГҐГ«Гі
+			//собрали стрелу
 			if( chk_all_transp(rk2,BRICK::ARROW) )
 			{
 				if ( Arms == ARROW)
@@ -1268,7 +1266,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 				Sound.play(SND_APPLE);
 			}
 
-			//Г±Г®ГЎГ°Г Г«ГЁ Г­Г®Г¦ГЁГЄ
+			//собрали ножик
 			if( chk_all_transp(rk2,BRICK::DAGGER) )
 			{
 				if (Arms == DAGGER)
@@ -1284,7 +1282,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 				Sound.play(SND_APPLE);
 			}
 
-			//Г±Г®ГЎГ°Г Г«ГЁ ГІГ®ГЇГ®Г°ГЁГЄ
+			//собрали топорик
 			if( chk_all_transp(rk2,BRICK::AXE) )
 			{
 				if (Arms == AXE)
@@ -1302,18 +1300,18 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 	}
 
 	//******************************************
-	//   ГЇГ°Г®ГўГҐГ°ГїГҐГ¬, ГіГЇГ Г« Г«ГЁ Г¬Г Г°ГЁГ® Гў ГЇГ°Г®ГЇГ Г±ГІГј
+	//   проверяем, упал ли марио в пропасть
 	//******************************************
 	if (rk.y>Level.MaxY+200+24)
 	{
 		Sound.play(SND_EXORCISM);
-		//Г¤ГҐГ«Г ГҐГ¬ Г°ГЁГЄГ  Г§Г ГЈГ ГёГҐГ­Г­Г»Г¬
+		//делаем рика загашенным
 		rk.Status|=MARIO_DEATH;
 	}
 
 
 //******************************************
-//   ГЊГЂГђГ€ГЋ ГўГ»ГЎГЁГўГ ГҐГІ Г§Г­Г ГЄГЁ ГўГ®ГЇГ°Г®Г±Г  ГЁ ГЄГЁГ°ГЇГЁГ·ГЁ
+//   МАРИО выбивает знаки вопроса и кирпичи
 //******************************************
 {
 	int x,y;
@@ -1321,15 +1319,15 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 	y=int(rk.y-1);
 
 	//int k=get_up(rc);
-	int k=ReadXY(x,y) & LEVEL::MASK;     //ГЄГ®Г¤ ГЄГЁГ°ГЇГЁГ·Г  ГЎГҐГ§ Г ГІГ°ГЁГЎГіГІГ®Гў
-	int k_nomask=Level.ReadXY(x,y);	//ГЄГ®Г¤ Г± ГіГ°Г®ГўГ­Гї Г± Г ГІГ°ГЁГЎГіГІГ Г¬ГЁ
+	int k=ReadXY(x,y) & LEVEL::MASK;     //код кирпича без атрибутов
+	int k_nomask=Level.ReadXY(x,y);	//код с уровня с атрибутами
 
-	//ГҐГ±Г«ГЁ Г±ГўГҐГ°ГµГі ГЄГЁГ°ГЇГЁГ· ГЁ Г¬Г Г°ГЁГ® Г«ГҐГІГЁГІ ГўГўГҐГ°Гµ
+	//если сверху кирпич и марио летит вверх
 	if ( k!=-1 && rk.Speedy<=0.5)
 	{
 		ANIM br;
 
-		//ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГЄГЁГ°ГЇГЁГ·Г 
+		//вычисляем координаты кирпича
 		x-=int(x)%24;
 		y-=int(y)%24;
 
@@ -1343,7 +1341,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 		switch(k_nomask)
 		{
-			//Г­ГҐГўГЁГ¤ГЁГ¬Г Гї Г§ГўГҐГ§Г¤Г 
+			//невидимая звезда
 			case ALIEN::MUSHROOMLIVE |LEVEL::ALIEN | LEVEL::logTRANSP:
 			{
 				br.SpriteIndex=BRICK::ANSWER;
@@ -1369,7 +1367,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 				break;
 			}
 
-			//ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© Г¦ГЁГ§Г­Гј
+			//гриб, дающий жизнь
 			/*case BRICK::MUSHROOMLIVE | LEVEL::ALIEN | LEVEL::logTRANSP:
 			{
 				Level.WriteXY(x,y,0);
@@ -1396,15 +1394,15 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 		switch(k)
 		{
 
-			//Г°Г Г§ГЎГЁГўГ ГҐГ¬ ГЄГЁГ°ГЇГЁГ·ГЁ
+			//разбиваем кирпичи
 			case BRICK::BREAK:
 			{
 
-				//Г·ГІГ®ГЎГ» Г­ГҐ ГЇГ°Г®Г«ГҐГІГ Г« ГўГўГҐГ°Гµ
+				//чтобы не пролетал вверх
 				rk.Speedy=0.01;
 
-				//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г¬Г Г«ГҐГ­ГјГЄГЁГ© ГЄГЁГ°ГЇГЁГ·
-				//ГІГ®Г«ГјГЄГ® ГЇГ®Г¤ГЇГ°Г»ГЈГЁГўГ ГҐГІ
+				//если марио маленький кирпич
+				//только подпрыгивает
 				if (~rk.Status & MARIO_BIG)
 				{
 					br.SpriteIndex=BRICK::BREAK;
@@ -1414,11 +1412,11 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 					Sound.play(SND_FINGER);
 
 				}
-				//ГЁГ­Г Г·ГҐ ГЄГЁГ°ГЇГЁГ· Г°Г Г§Г«ГҐГІГ ГҐГІГ±Гї
+				//иначе кирпич разлетается
 				else
 				{
 
-					//ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г·ГЁГ±Г«Г® Г®Г·ГЄГ®Гў
+					//увеличиваем число очков
 					Supermario.Score+=50;
 
 					Level.WriteXY(x,y,0);
@@ -1471,14 +1469,14 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 			}
 
 
-			//ГЇГіГ±ГІГ®Г© Г§Г­Г ГЄ ГўГ®ГЇГ°Г®Г±Г 
+			//пустой знак вопроса
 			case BRICK::ANSWER:
 			{
 				br.SpriteIndex=BRICK::ANSWER;
 				break;
 			}
 			
-			//ГўГ»ГЎГЁГ«ГЁ Г§ГўГҐГ§Г¤Г 
+			//выбили звезда
 			case BRICK::BRICKSTAR:
 			{
 				br.SpriteIndex=BRICK::BRICKSTAR;
@@ -1502,7 +1500,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 				break;
 			}
 
-			//ГЈГ°ГЁГЎГ®ГЄ
+			//грибок
 			case BRICK::ANSWERMUSHROOM:
 			{
 				ANIM gr;
@@ -1527,7 +1525,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 				break;
 			}
 
-			//ГЄГЁГ°ГЇГЁГ·ГЁГЄ, ГЈГ¤ГҐ Г¬Г­Г®ГЈГ® Г¬Г®Г­ГҐГІГ®ГЄ
+			//кирпичик, где много монеток
 			case BRICK::MANYMONEY:
             {
 				br.SpriteIndex=BRICK::MANYMONEY;
@@ -1551,7 +1549,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 		switch(k)
 		{
-			//ГЄГЁГ°ГЇГЁГ·ГЁГЄГЁ ГЇГ®Г¤Г«ГҐГІГ ГѕГІ
+			//кирпичики подлетают
 			case BRICK::BRICKSTAR:
 			//case BRICK::BREAK:
 			case BRICK::ANSWER:
@@ -1572,7 +1570,7 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 			case BRICK::MANYMONEY:
 			case BRICK::ANSWER:
 			{
-				//Г§Г ГЇГіГ±ГЄГ ГҐГ¬ Г¬Г®Г­ГҐГІГЄГі
+				//запускаем монетку
 				br.y-=20;
 				br.Speedx=0;
 				br.Speedy=-3.0;
@@ -1592,18 +1590,18 @@ void SUPERMARIO::MarioRenewXY(MARIO &rk)
 
 
 //***************************************************
-//   ???mario ГЈГ Г±ГЁГІ Г·ГіГ¦ГЁГµ ГЁГ«ГЁ Г·ГіГ¦ГЁГҐ ГЈГ Г±ГїГІ mario???
+//   ???mario гасит чужих или чужие гасят mario???
 //***************************************************
 
-//ГЇГ°Г®ГўГҐГ°ГЄГ  Г±ГІГ®Г«ГЄГ­Г®ГўГҐГ­ГЁГї Г¬Г Г°ГЁГ® Г± Г«ГЁГ­ГЁГҐГ© Г®ГЈГ­Гї
+//проверка столкновения марио с линией огня
 for(int j=0;j<FireLine.Counter; j++)
 {
 ANIM &fr=FireLine[j];
-//ГҐГ±Г«ГЁ Г®ГЈГ®Г­Гј Г§Г ГЈГ Г±ГЁГ« Г¬Г Г°ГЁГ®
+//если огонь загасил марио
 //????????????
 if (~rk.Status & MARIO_PROTECTED && CheckUnionRects(fr.Rect,rk.Rect) != FALSE)
 {
-                                                //ГЈГ Г±ГЁГ¬ Г¬Г Г°ГЁГ®
+                                                //гасим марио
 	rk.Speedx=0;
 	rk.Speedy=-5;
 	rk.Acceleratx=0;
@@ -1614,23 +1612,23 @@ if (~rk.Status & MARIO_PROTECTED && CheckUnionRects(fr.Rect,rk.Rect) != FALSE)
 }
 }
 
-//ГЇГ°Г®ГўГҐГ°ГЄГ  Г·ГіГ¦ГЁГµ
+//проверка чужих
 for(j=0;j<Alien.Counter;j++)
 {
 PERSON &al=(PERSON&) Alien[j];
-//ГҐГ±Г«ГЁ Г¦ГЁГўГ®Г© Г·ГіГ¦Г®Г© Г±ГІГ®Г«ГЄГіГ­Г«Г±Гї Г± Г¬Г Г°ГЁГ®
+//если живой чужой столкунлся с марио
 if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 {
-	//ГҐГ±Г«ГЁ Г·ГіГ¦Г®Г© ГіГЇГ Г« Г­Г  Г¬Г Г°ГЁГ® Г±ГўГҐГ°ГµГі
+	//если чужой упал на марио сверху
 	if ( rk.y-al.y>=0)
 	{
-		//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г§Г Г№ГЁГ№ГҐГ­Г­Г»Г©
+		//если марио защищенный
 		if (rk.Status & MARIO_PROTECTED)
 		{
-			//Г®Г­ Г§Г ГЈГ Г±ГЁГ« Г·ГіГ¤Г®ГўГЁГ№ГҐ
+			//он загасил чудовище
 			Sound.play(SND_POP1);
 
-			//ГЈГ Г±ГЁГ¬ Г·ГіГ¤Г®ГўГЁГ№ГҐ
+			//гасим чудовище
 			al.Status=ALIEN::DEATH;
 			al.TimeLive=250;
 			al.Speedx=rk.Speedx;
@@ -1638,15 +1636,15 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 			al.Speedy=-4;
 			al.FrameSpeed=0;
 			al.Movement |= PERSON::FLIP_VERT;
-			//ГўГ±ГҐГЈГ¤Г  Г Г­ГЁГ¬ГЁГ°Г®ГўГ ГІГј
+			//всегда анимировать
 			al.AlwaysAnimate=TRUE;
 		}
 
-		//ГЁГ­Г Г·ГҐ Г¬Г Г°ГЁГ® Г­ГҐ Г§Г Г№ГЁГ№ГҐГ­Г­Г»Г©
-		//ГҐГ±Г«ГЁ Г­ГҐ Г¤Г°Г ГЄГ®Г­(Г®Г­ Г­ГҐ ГЈГ Г±ГЁГІ Г¬Г Г°ГЁГ®)
+		//иначе марио не защищенный
+		//если не дракон(он не гасит марио)
 		else if (al.FrameFirst != SPRITE_LIZARDSTART)
 		{
-			//ГЈГ Г±ГЁГ¬ Г¬Г Г°ГЁГ®
+			//гасим марио
 			rk.Speedx=0;
 			rk.Speedy=-5;
 			rk.Acceleratx=0;
@@ -1655,13 +1653,13 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 			rk.Status|=MARIO_DEATH;
 			Sound.play(SND_POP1);
 			//Sound.play(SND_LAUGHT);
-			//ГўГ»Г¤ГҐГ°Г¦ГЁГўГ ГҐГ¬ ГЇГ ГіГ§Гі
+			//выдерживаем паузу
 			//scr.pause(DEATHPAUSE);
 		}
 		break;
 	}
 
-	//ГЁГ­Г Г·ГҐ Г­Г Г®ГЎГ®Г°Г®ГІ - Г¬Г Г°ГЁГ® Г§Г ГЈГ Г±ГЁГ« Г·ГіГ¦Г®ГЈГ®
+	//иначе наоборот - марио загасил чужого
 	else
 	{
 		switch(al.FrameFirst)
@@ -1671,7 +1669,7 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 			case SPRITE_PIGSTART:
 			//case SPRITE_LIZARDSTART:
 
-			//Г±Г®Г§Г¤Г ГҐГ¬ Г®Г·ГЄГЁ
+			//создаем очки
 			ANIM ob;
 			ob.x=al.x;
 			ob.y=al.y;
@@ -1684,12 +1682,12 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 
 		rk.Speedy=-2.5;
 
-		//Г®Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГЁ ГЈГ Г±ГЁГ¬ Г·ГіГ¦Г®ГЈГ®
+		//останавливаем и гасим чужого
 		switch(al.FrameFirst)
 		{
 			case SPRITE_MASHASTART:
 			case SPRITE_TURTLESTART:
-			//Г±ГўГЁГ­ГјГЁ ГЁ Г«ГЁГ§Г Г°Г¤Г» ГЈГ Г±ГїГІГ±Гї ГІГ®Г«ГјГЄГ® Г®Г°ГіГ¦ГЁГҐГ¬
+			//свиньи и лизарды гасятся только оружием
 			//case SPRITE_LIZARDSTART:
 			//case SPRITE_PIGSTART:
 
@@ -1707,28 +1705,28 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 		switch (al.FrameFirst)
 		{
 
-			//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г­Г ГЇГ°Г»ГЈГ­ГіГ« Г­Г  Г±ГўГЁГ­ГЄГі
+			//если марио напрыгнул на свинку
 			case SPRITE_PIGSTART:
 			{
-				//Г®-Г®Г·ГҐГ­Гј ГўГ»Г±Г®ГЄГ® ГЇГ®Г¤ГЇГ°Г»ГЈГЁГўГ ГҐГІ
+				//о-очень высоко подпрыгивает
 				rk.Speedy=-9;
 				break;
 			}
-			//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г­Г ГЇГ°Г»ГЈГ­ГіГ« Г­Г  Г¤Г°Г ГЄГ®Г­Г 
+			//если марио напрыгнул на дракона
 			case SPRITE_LIZARDSTART:
 			{
-				//Г®-Г®Г·ГҐГ­Гј ГўГ»Г±Г®ГЄГ® ГЇГ®Г¤ГЇГ°Г»ГЈГЁГўГ ГҐГІ
+				//о-очень высоко подпрыгивает
 				rk.Speedx=4+0.1*random(50);
 				if (random(2)) rk.Speedx*=-1;
 				break;
 			}
 
-			//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г­Г ГЇГ°Г»ГЈГ­ГіГ« Г­Г  ГЈГ°ГЁГЎ
+			//если марио напрыгнул на гриб
 			case SPRITE_MASHASTART:
 				al.SpriteIndex=SPRITE_MASHASMALL;
 				break;
 
-			//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г­Г ГЇГ°Г»ГЈГ­ГіГ« Г­Г  Г·ГҐГ°ГҐГЇГҐГ ГµГі
+			//если марио напрыгнул на черепеаху
 			case SPRITE_TURTLESTART:
 				al.SpriteIndex=SPRITE_TURTLEHOUSE;
 				al.FrameFirst=SPRITE_TURTLEHOUSE;
@@ -1738,22 +1736,22 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
                 al.Status=0;
                 break;
 		
-			//ГҐГ±Г«ГЁ Г¬Г Г°ГЁГ® Г­Г ГЇГ°Г»ГЈГ­ГіГ« Г­Г  ГЇГ Г­Г¶ГЁГ°Гј
+			//если марио напрыгнул на панцирь
 			case SPRITE_TURTLEHOUSE:
-				//Г§ГўГіГ·ГЁГІ Г§ГўГіГЄ
+				//звучит звук
 				Sound.play(SND_POP);
 
-				//ГўГ°ГҐГ¬Гї Г¦ГЁГ§Г­ГЁ ГЇГ Г­Г¶ГЁГ°Гї ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГІГ±Гї
+				//время жизни панциря увеличивается
 				al.TimeLive+=500;
 				al.Status=0;
 
-				//ГҐГ±Г«ГЁ ГЇГ Г­Г¶ГЁГ°Гј Г±ГІГ®ГЁГІ
+				//если панцирь стоит
 				if (al.Speedx==0)
-					//Г§Г ГЇГіГ±ГЄГ ГҐГ¬ ГҐГЈГ®
+					//запускаем его
 					al.Speedx=4*sign(rk.Speedx+0.01);
-				//ГЁГ­Г Г·ГҐ ГЇГ Г­Г¶ГЁГ°Гј Г¤ГўГЁГЈГ ГҐГІГ±Гї
+				//иначе панцирь двигается
 				else
-					//Г®Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГҐГЈГ®
+					//останавливаем его
 					al.Speedx=0;
 		}
 
@@ -1763,19 +1761,19 @@ if (!al.Status && CheckUnionRects(al.Rect,rk.Rect) != FALSE)
 
 }
 
-//=============Г±ГІГ Г°ГІГіГҐГ¬ ГЁГЈГ°Гі==============
+//=============стартуем игру==============
 SUPERMARIO::SUPERMARIO()
 {
 	ChangeEffect=false;
 	GAMEEXIT=FALSE;
 }
 
-//ГЇГ°Г®ГўГҐГ°ГїГҐГІ, Г·ГІГ® Г­Г ГµГ®Г¤ГЁГІГ±Гї Г­Г Г¤ Г®ГЎГєГҐГЄГІГ®Г¬(ГЇГ°ГїГ¬Г®ГіГЈГ®Г«ГјГ­ГЁГЄГ®Г¬)
-//what Г§Г Г¤Г ГҐГІ Г­Г®Г¬ГҐГ° ГЄГЁГ°ГЇГЁГ·Г  Г¤Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ
-//mask Г§Г Г¤Г ГҐГІ ГІГҐ Г ГІГ°ГЁГЎГіГІГ», ГЄГ®ГІГ®Г°Г»ГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г® Г®ГЎГ­ГіГ«ГЁГІГј ГЇГ°ГЁ ГЇГ°Г®ГўГҐГ°ГЄГҐ
-//Г‚ГЌГ€ГЊГЂГЌГ€Г…: ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ Г§Г Г­ГіГ«ГїГѕГІГ±Гї ГўГ±ГҐ Г ГІГІГ°ГЁГЎГіГІГ»
-//Г‚Г®Г§ГўГ°Г ГІ: TRUE - ГҐГ±Г«ГЁ Г­Г Г¤ Г®ГЎГєГҐГЄГІГ®Г¬ Г­Г ГµГ®Г¤ГЁГІГ±Гї ГІГ®Г«ГјГЄГ® ГЅГІГ®ГІ ГЄГЁГ°ГЇГЁГ·
-//FALSE - ГҐГ±Г«ГЁ Г­Г Г¤ Г®ГЎГєГҐГЄГІГ®Г¬ ГҐГ±ГІГј Г¤Г°ГіГЈГЁГҐ ГЄГЁГ°ГЇГЁГ·ГЁГЄГЁ
+//проверяет, что находится над объектом(прямоугольником)
+//what задает номер кирпича для проверки
+//mask задает те атрибуты, которые необходимо обнулить при проверке
+//ВНИМАНИЕ: по умолчанию зануляются все аттрибуты
+//Возврат: TRUE - если над объектом находится только этот кирпич
+//FALSE - если над объектом есть другие кирпичики
 int SUPERMARIO::chk_up(MOVEOBJ & ob, int what, int mask)
 {
 	int x=ob.Rect.Left;
@@ -1833,9 +1831,9 @@ int SUPERMARIO::chk_down(MOVEOBJ & ob, int what)
 }
 
 
-//ГЇГ°Г®ГўГҐГ°ГїГҐГІ, Г·ГІГ®ГЎГ» ГЈГ®Г°ГїГ·ГЁГ© ГЇГ°ГїГ¬Г®ГіГЈГ®Г«ГјГ­ГЁГЄ Г±ГЇГ°Г Г©ГІГ  Г­Г ГµГ®Г¤ГЁГ«Г±Гї Гў
-//ГЄГЁГ°ГЇГЁГ·Г Гµ what Г± Г ГІГ°ГЁГЎГіГІГ Г¬ГЁ
-//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ 1,ГҐГ±Г«ГЁ ГЅГІГ® ГІГ ГЄ, ГЁГ«ГЁ 0, ГҐГ±Г«ГЁ Г­ГҐ ГІГ ГЄ
+//проверяет, чтобы горячий прямоугольник спрайта находился в
+//кирпичах what с атрибутами
+//возвращает 1,если это так, или 0, если не так
 int SUPERMARIO::chk_all(MOVEOBJ & ob, int what)
 {
 	int x=ob.Rect.Left;
@@ -1855,9 +1853,9 @@ int SUPERMARIO::chk_all(MOVEOBJ & ob, int what)
 	return 0;
 }
 
-//ГЇГ°Г®ГўГҐГ°ГїГҐГІ, Г­Г ГµГ®Г¤ГЁГІГ±Гї Г«ГЁ Г±ГЇГ°Г Г©ГІ Гў ГЇГіГ±ГІГ®ГІГҐ ГЁГ«ГЁ Гў ГґГ®Г­ГҐ
-//ГўГ®Г§ГўГ°Г ГІ 0 - ГҐГ±Г«ГЁ Гў ГЇГіГ±ГІГ®ГІГҐ
-// != 0 - ГҐГ±Г«ГЁ Гў Г·ГҐГ¬-ГІГ®
+//проверяет, находится ли спрайт в пустоте или в фоне
+//возврат 0 - если в пустоте
+// != 0 - если в чем-то
 int SUPERMARIO::chk(MOVEOBJ & ob)
 {
 	int x=ob.Rect.Left;
@@ -1884,8 +1882,8 @@ int SUPERMARIO::chk2(MOVEOBJ &ob)
 }
 
 
-//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ 0, ГҐГ±Г«ГЁ Г·ГЁГІГ ГҐГІГ±Гї 0 ГЁГ«ГЁ ГЇГ°Г®Г§Г°Г Г·Г­Г»Г©
-//ГЁГ­Г Г·ГҐ ГўГ®Г§ГўГ°Г Г№Г ГҐГІГ±Гї ГЄГ®Г¤ ГЄГЁГ°ГЇГЁГ·Г  ГЎГҐГ§ Г ГІГ°ГЁГЎГіГІГ®Гў
+//возвращает 0, если читается 0 или прозрачный
+//иначе возвращается код кирпича без атрибутов
 int SUPERMARIO::ReadXY(int x,int y)
 {
 	int k=Level.ReadXY(x,y);
@@ -1893,14 +1891,14 @@ int SUPERMARIO::ReadXY(int x,int y)
 	return k & LEVEL::MASK;
 }
 
-//ГўГ®Г§ГўГ°Г Г№Г ГҐГІГ±Гї ГЄГ®Г¤ ГЄГЁГ°ГЇГЁГ·Г  ГЎГҐГ§ Г ГІГ°ГЁГЎГіГІГ®Гў
+//возвращается код кирпича без атрибутов
 int SUPERMARIO::ReadXY1(int x,int y)
 {	int k=Level.ReadXY(x,y);
 	return k & LEVEL::MASK;
 }
 
 
-//ГЇГ°Г®ГўГҐГ°ГїГҐГІ, Г­Г ГµГ®Г¤ГЁГІГ±Гї Г«ГЁ Г±ГЇГ°Г Г©ГІ Гў ГЇГіГ±ГІГ®ГІГҐ
+//проверяет, находится ли спрайт в пустоте
 int SUPERMARIO::chk_all_transp(MOVEOBJ & ob, int what)
 {
 	int x=ob.Rect.Left;
@@ -1919,8 +1917,8 @@ int SUPERMARIO::chk_all_transp(MOVEOBJ & ob, int what)
 
 
 
-//Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -1 ГҐГ±Г«ГЁ ГўГўГҐГ°ГµГі Г°Г Г§Г­Г»ГҐ ГЄГЁГ°ГЇГЁГ·ГЁ
-// Г€Г­Г Г·ГҐ ГЄГ®Г¤ ГЅГІГЁГµ ГЄГЁГ°ГЇГЁГ·ГҐГ©
+//Возвращает -1 если вверху разные кирпичи
+// Иначе код этих кирпичей
 int SUPERMARIO::get_up(MOVEOBJ & ob)
 {
 	int x=ob.Rect.Left;
@@ -1935,7 +1933,7 @@ int SUPERMARIO::get_up(MOVEOBJ & ob)
 }
 
 
-//==================== ГЇГ°Г®ГЁГЈГ°Г»ГўГ Г­ГЁГҐ Г¬ГҐГ«Г®Г¤ГЁГЁ =========================
+//==================== проигрывание мелодии =========================
 void SUPERMARIO::PlayMusic(int n)
 {
 /*	CurrentMusic=n;
@@ -1948,7 +1946,7 @@ void SUPERMARIO::PlayMusic(int n)
 
 //	mciSendString("stop snd", ret,sizeof(ret),NULL);
 	mciSendString("close snd", ret,sizeof(ret),NULL);
-    //ГЁГЈГ°Г ГҐГ¬ Г¬ГҐГ«Г®Г¤ГЁГѕ
+    //играем мелодию
 	mciSendString(buf, ret,sizeof(ret),NULL);
 	mciSendString("set snd time format milliseconds",ret,sizeof(ret),NULL);
 	wsprintf(buf,"seek snd to %i",song_start[n]);
@@ -1962,11 +1960,11 @@ void SUPERMARIO::PlayMusic(int n)
 }
 
 
-//========Г®ГЎГєГҐГЄГІГ»  Rick Г«Г®ГўГїГІГј ГЇГ°ГЁГ§Г» Prize=============
+//========объекты  Rick ловять призы Prize=============
 void SUPERMARIO::prPrizeCatch(ANIM &Rick, ANIM &Prize)
 {
 //******************************************************
-//   ГЇГ°ГЁГ§Г» Г­ГҐ ГЇГ°Г®ГµГ®Г¤ГїГІ Г±ГЄГўГ®Г§Гј Г±ГІГҐГ­ГЄГЁ ГЁ Г¬Г Г°ГЁГ® Г«Г®ГўГЁГІ ГЇГ°ГЁГ§Г»
+//   призы не проходят сквозь стенки и марио ловит призы
 //******************************************************
 for(int j=0;j<Rick.Counter;j++)
 for(int i=0; i<Prize.Counter;i++)
@@ -1974,7 +1972,7 @@ for(int i=0; i<Prize.Counter;i++)
 ANIM & al=Prize[i];
 ANIM & rk=Rick[j];
 
-//ГҐГ±Г«ГЁ ГЇГ®Г©Г¬Г Г«ГЁ ГЄГ ГЄГ®Г©-ГІГ® ГЇГ°ГЁГ§
+//если поймали какой-то приз
 if (CheckUnionRects(al.Rect,rk.Rect))
 {
 	Sound.play(SND_HEALTH, SOUND::NOSTOP);
@@ -1982,17 +1980,17 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 
 	switch(al.SpriteIndex)
 	{
-		//ГЇГ®Г©Г¬Г Г«ГЁ ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© Г¦ГЁГ§Г­Гј
+		//поймали гриб, дающий жизнь
 		case SPRITE_MUSHROOM_LIVE:
 		{
-			//ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г·ГЁГ±Г«Г® Г¦ГЁГ§Г­ГҐГ©
+			//увеличиваем число жизней
 			Lives++;
 			scor=1000;
 			Sound.play(SND_RESTART);
 			break;
 		}
 
-		//ГЇГ®Г©Г¬Г Г«ГЁ Г§ГўГҐГ§Г¤Гі
+		//поймали звезду
 		case SPRITE_STAR:
 		{
 			rk.Status|=MARIO_PROTECTED;
@@ -2003,7 +2001,7 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 			break;
 		}
 
-		//ГЇГ®Г©Г¬Г Г«ГЁ Г®ГЎГ»Г·Г­Г»Г© ГЈГ°ГЁГЎ, Г¤Г ГѕГ№ГЁГ© ГЇГ°ГҐГўГ°Г Г№ГҐГ­ГЁГҐ Гў Г¤Г°Г ГЄГ®Г­Г  (Г‹ГЁГ§Г Г°Г¤)
+		//поймали обычный гриб, дающий превращение в дракона (Лизард)
 		case SPRITE_MUSHROOM_BIG:
 		{
 			scor=1000;
@@ -2015,9 +2013,9 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 			break;
 		}
 
-		//ГЇГ®Г©Г¬Г Г«ГЁ Г¶ГўГҐГІГ®ГЄ
-		//ГЎГ ГЈ/ГґГЁГ·Г  - ГҐГ±Г«ГЁ Г¶ГўГҐГІГ®ГЄ ГЎГҐГ°ГҐГІ
-		//Г­ГҐ Г¤ГЁГ­Г®Г§Г ГўГ°ГЁГЄ - Г®Г­ ГІГ®Г¦ГҐ Г¬Г®Г¦ГҐГІ Г±ГІГ°ГҐГ«ГїГІ
+		//поймали цветок
+		//баг/фича - если цветок берет
+		//не динозаврик - он тоже может стрелят
 		case SPRITE_FLOWER:
 		{
 			scor=1500;
@@ -2029,7 +2027,7 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 		}
 	}
 
-	//Г±Г®Г§Г¤Г ГҐГ¬ Г®Г·ГЄГЁ
+	//создаем очки
 	{
 		ANIM ob;
 		ob.x=al.x;
@@ -2040,44 +2038,44 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 		Score+=scor;
 	}
 
-	//ГіГ¤Г Г«ГїГҐГ¬ ГЇГ°ГЁГ§
+	//удаляем приз
 	{
 		Prize.Del(&al);
 		i--;
 	}
 
-	//ГЇГ°Г®Г¤Г®Г«Г¦Г ГҐГ¬ Г¶ГЁГЄГ«
+	//продолжаем цикл
 	continue;
 }//if (CheckUnionRects(al.Rect,rk.Rect))
 
-		//Г¤Г ГҐГ¬ ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГј ГЇГ°ГЁГ§Гі ГЇГ®Г¤Г­ГїГІГјГ±Гї ГЎГҐГ§ ГЇГ°ГҐГЇГїГІГ±ГўГЁГ©
+		//даем возможность призу подняться без препятсвий
 		if (al.TimeLive>3) continue;
 		al.TimeLive=0;
 
-		//ГҐГ±Г«ГЁ ГўГ­ГЁГ§Гі ГЇГіГ±ГІГ®ГІГ 
+		//если внизу пустота
 		if (chk_down(al,0))
 		{
 			al.Acceleraty=0.2;
 		}
-		//ГЁГ­Г Г·ГҐ ГўГ­ГЁГ§Гі Г§ГҐГ¬Г«Гї
+		//иначе внизу земля
 		else
-		//ГҐГ±Г«ГЁ ГЇГ Г¤Г ГҐГІ ГўГ­ГЁГ§
+		//если падает вниз
 		if (al.Speedy>0)
 		{
 			al.y=int(al.y)/24*24;
 			al.Acceleraty=0;
 
-			//Г±Г¬Г®ГІГ°Гї ГЄГ ГЄГ®Г© ГЇГ°ГЁГ§
-			//Г®Г­ ГЎГіГ¤ГҐГІ Г®ГІГІГ Г«ГЄГЁГўГ ГІГјГ±Гї
-			//Г®ГІ Г§ГҐГ¬Г«ГЁ ГЇГ® Г°Г Г§Г­Г®Г¬Гі
+			//смотря какой приз
+			//он будет отталкиваться
+			//от земли по разному
 			switch(al.SpriteIndex)
 			{
-				//Г§ГўГҐГ§Г¤Г  Г¬Г®Г№Г­Г®
+				//звезда мощно
 				case SPRITE_STAR:
 				al.Speedy=-0.8*abs(al.Speedy);
 				break;
 
-				//ГЈГ°ГЁГЎ Г±Г«Г ГЎГ®
+				//гриб слабо
 				case SPRITE_MUSHROOM_BIG:
 				al.Speedy=-0.4*abs(al.Speedy);
 				break;
@@ -2087,7 +2085,7 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 				break;
 				
 			}
-			//Г±Г«ГЁГёГЄГ®Г¬ Г­ГЁГ§ГЄГ® Г­ГҐ Г¤Г®Г«Г¦ГҐГ­ ГЇГ°Г»ГЈГ ГІГј
+			//слишком низко не должен прыгать
 			if (al.Speedy>-0.5) al.Speedy=0;
 		}
 
@@ -2098,10 +2096,10 @@ if (CheckUnionRects(al.Rect,rk.Rect))
 }
 }
 
-// ГЅГґГґГҐГЄГІ ГЇГ®Г±ГЁГ­ГҐГ­ГЁГї ГЅГЄГ°Г Г­Г 
+// эффект посинения экрана
 void SUPERMARIO::ColorEffect()
 {
-	//ГЅГґГґГҐГЄГІ - Г·ГҐГ°Г­Г»ГҐ ГІГ®Г·ГЄГЁ Г°Г Г±ГІГўГ®Г°ГїГѕГІ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГҐ
+	//эффект - черные точки растворяют изображение
 	for(int j=0; j<1400; j++)
 	{
 		//scr.pause(1);
@@ -2128,16 +2126,16 @@ int  SUPERMARIO::MenuConfiguration(void)
 	double t=0;
 
 	
-	int N=4;	//Г·ГЁГ±Г«Г® ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ­Гѕ
+	int N=4;	//число элементов меню
 	char far * txt[]=
 	{
-		 "1. ГЋГ’ГЉГ‹ГћГ—Г…ГЌГ€Г… Г‡Г‚Г“ГЉГЂ ",
-		 "2. ГЋГ’ГЉГ‹ГћГ—Г…ГЌГ€Г… ГЊГ“Г‡Г›ГЉГ€ ",
-		 "3. ГЏГ…ГђГ…ГЌГЂГ‡ГЌГЂГ—Г…ГЌГ€Г… ГЉГ‹ГЂГ‚Г€Г",
-		 "4. Г‚Г›Г•ГЋГ„ Г‚ ГѓГ‹ГЂГ‚ГЌГЋГ… ГЊГ…ГЌГћ"
+		 "1. ОТКЛЮЧЕНИЕ ЗВУКА ",
+		 "2. ОТКЛЮЧЕНИЕ МУЗЫКИ ",
+		 "3. ПЕРЕНАЗНАЧЕНИЕ КЛАВИШ",
+		 "4. ВЫХОД В ГЛАВНОЕ МЕНЮ"
 	 };
 
-	int TitleNew=-1;	//ГІ.ГЄ. ГЇГҐГ°ГҐГ¤ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐГ¬ TitleNew ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГІГ±Гї
+	int TitleNew=-1;	//т.к. перед использованием TitleNew увеличивается
 	int nm=0;
 	int py=y;
 	double levelx=0,speed_levelx=2.5;
@@ -2146,12 +2144,12 @@ int  SUPERMARIO::MenuConfiguration(void)
    {
 	SCREEN &Screen=scr;
 
-	//**** ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГї *****
+	//**** построение изображения *****
 	Screen.setcolor(15);
 	Screen.setbkcolor(0);
 	Screen.rectangle(0,0,320,200,0);
 
-	//ГўГ»ГўГ®Г¤ Г±ГІГ°Г®ГЄ Г¬ГҐГ­Гѕ Г­Г  ГЅГЄГ°Г Г­
+	//вывод строк меню на экран
 	for (int k=0; k<N; k++)
 	{
 		double	
@@ -2168,13 +2166,13 @@ int  SUPERMARIO::MenuConfiguration(void)
 		scr.locateXY(int(x1),int(y1));  
 		scr.putText(txt[k]);
 
-		//ГўГ»ГўГ®Г¤ ГіГЄГ Г§Г ГІГҐГ«Гї
+		//вывод указателя
 		int px=20;
 		Sprite.Show(int(x1-20),int(y1)-1,SPRITE_POINTER);
 
 	}
 
-	//ГҐГ±Г«ГЁ Г­Г Г¦Г Г«ГЁ ГЄГ«Г ГўГЁГёГі Г‚Г‚Г…ГђГ•
+	//если нажали клавишу ВВЕРХ
 	if ( Keyb[KEY_UP] && py>y )
 	{
 		Keyb.Set(KEY_UP,0);
@@ -2184,7 +2182,7 @@ int  SUPERMARIO::MenuConfiguration(void)
 		t=0;
 	}
 
-	//ГҐГ±Г«ГЁ Г­Г Г¦Г Г«ГЁ ГЄГ«Г ГўГЁГёГі Г‚ГЌГ€Г‡
+	//если нажали клавишу ВНИЗ
 	if ( Keyb[KEY_DOWN] && py<y+(N-1)*2 )
 	{
 		Keyb.Set(KEY_DOWN,0);
@@ -2197,11 +2195,11 @@ int  SUPERMARIO::MenuConfiguration(void)
 	Timer.Counter=0;
 
 	scr.color=15;//rand()%256;
-	scr.center(15, "Г‘Г®Г«Г¤Г ГІ ГЊГ Г°ГЁГ®");
+	scr.center(15, "Soldier Mario");
 	
 	static t=0;
 	scr.color=15;//t;
-	scr.center(200-15, "(c) 1997-2011 Wiz");
+	scr.center(200-15, "(c) 1997-2020 Wiz");
 	t++;
 
 	scr.update();
@@ -2232,7 +2230,7 @@ int  SUPERMARIO::MenuMain(void)
 	im.Attribute=0;
 	zast.LoadSpriteform("graph\\zast.sp0",im);
 
-	//ГЇГҐГ°ГҐГ­Г Г±ГІГ°Г ГЁГўГ ГҐГ¬ Г±Г·ГҐГІГ·ГЁГЄ Г±Г«ГіГ·Г Г©Г­Г»Гµ Г·ГЁГ±ГҐГ«
+	//перенастраиваем счетчик случайных чисел
 	//random();
 
 	for(UINT i=0; i<GetTickCount()%100; i++) rand();
@@ -2248,7 +2246,7 @@ int  SUPERMARIO::MenuMain(void)
 	ANIM Title(&BigFont);
 	PERSON Mario(&Sprite);
 
-	//Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ ГЈГ°Г Г­ГЁГ¶Г» ГЇГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГї
+	//определяем границы перемещения
 	{
 		MOVEOBJ::Lim.Left=-24;
 		MOVEOBJ::Lim.Right=324;
@@ -2258,20 +2256,20 @@ int  SUPERMARIO::MenuMain(void)
 		MOVEOBJ::WindowY=0;
 	}
 
-	int N=7;	//Г·ГЁГ±Г«Г® ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬ГҐГ­Гѕ
+	int N=7;	//число элементов меню
 	char far * txt[]=
 	{
-		 "1. ГЋГ„Г€ГЌ Г€ГѓГђГЋГЉ",
-		 "2. Г„Г‚ГЂ Г€ГѓГђГЋГЉГЂ",
-		 "3. Г’ГђГ€ Г€ГѓГђГЋГЉГЂ",
-		 "4. ГЉГЋГЌГ”Г€ГѓГ“ГђГЂГ–Г€Гџ",
-		 "5. ГђГ…Г„ГЂГЉГ’ГЋГђ Г“ГђГЋГ‚ГЌГ…Г‰",
-		 "6. ГђГ…Г„ГЂГЉГ’ГЋГђ Г‘ГЏГђГЂГ‰Г’ГЋГ‚",
-		 "7. Г‚Г›Г•ГЋГ„"
+		 "1. 1 player",
+		 "2. 2 players",
+		 "3. 3 players",
+		 "4. config",
+		 "5. level editor",
+		 "6. sprite editor",
+		 "7. exit"
 		 
 	 };
 
-	int TitleNew=-1;	//ГІ.ГЄ. ГЇГҐГ°ГҐГ¤ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐГ¬ TitleNew ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГІГ±Гї
+	int TitleNew=-1;	//т.к. перед использованием TitleNew увеличивается
 	int nm=0;
 	double levelx=0,speed_levelx=2.5;
 
@@ -2279,7 +2277,7 @@ int  SUPERMARIO::MenuMain(void)
 	{
 	SCREEN &Screen=scr;
 
-	//**** ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГї *****
+	//**** построение изображения *****
 	Screen.setcolor(15);
 	Screen.setbkcolor(0);
 	Screen.rectangle(0,0,320,200,0);
@@ -2304,17 +2302,17 @@ int  SUPERMARIO::MenuMain(void)
 		Level.Load(rand()%10);
 	}
 
-	//ГўГ»ГўГ®Г¤ Г§Г Г±ГІГ ГўГЄГЁ
+	//вывод заставки
 	//zast.Show(90+rand()%3,0,SPRITE_ZAST0);
 
-	//ГўГ»ГўГ®Г¤ Г±ГІГ°Г®ГЄ Г¬ГҐГ­Гѕ Г­Г  ГЅГЄГ°Г Г­
+	//вывод строк меню на экран
 	for (int k=0; k<N; k++)
 	{
 		const int HEI_STRING=20;
 		double x1,y1;
 		//x1=(320-8*strlen(txt[k]))/2;
 		x1=90;
-		y1=k*HEI_STRING+40; //Гі ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГўГ»ГўГ®Г¤Г  Г¬ГҐГ­Гѕ
+		y1=k*HEI_STRING+40; //у координаты вывода меню
 
 		if (k == nm)
 		{
@@ -2326,13 +2324,13 @@ int  SUPERMARIO::MenuMain(void)
 		scr.locateXY(int(x1),int(y1));  
 		scr.putText(txt[k]);
 
-		//ГўГ»ГўГ®Г¤ ГіГЄГ Г§Г ГІГҐГ«Гї
+		//вывод указателя
 		int px=20;
 		Sprite.Show(int(x1-20),int(y1)-1,SPRITE_POINTER);
 
 	}
 
-	//Г­Г Г¦Г Г«ГЁ ГўГўГҐГ°Гµ
+	//нажали вверх
 	if ( Keyb[KEY_UP])
 	{
 		nm--;
@@ -2343,7 +2341,7 @@ int  SUPERMARIO::MenuMain(void)
 		Keyb.Set(KEY_UP,0);
 	}
 
-	//ГҐГ±Г«ГЁ Г­Г Г¦Г Г«ГЁ ГЄГ«Г ГўГЁГёГі Г‚ГЌГ€Г‡
+	//если нажали клавишу ВНИЗ
 	if ( Keyb[KEY_DOWN])
 	{
 		nm++;
@@ -2357,17 +2355,17 @@ int  SUPERMARIO::MenuMain(void)
 	Title.Animate();
 	Mario.Animate();
 
-    //ГҐГ±Г«ГЁ ГўГ±ГҐ Г­Г Г¤ГЇГЁГ±ГЁ ГЇГ°Г®ГёГ«ГЁ, ГЇГ®ГЄГ Г§Г»ГўГ ГІГј Г­Г Г¤ГЇГЁГ±Гј 'SUPER MARIO'
+    //если все надписи прошли, показывать надпись 'SUPER MARIO'
 	if (TitleNew == 4) s1.Show(20,35);
 
 	while (Timer.Counter <2);
 	Timer.Counter=0;
 
 	scr.color=15;
-	scr.center(15, "Г‘Г®Г«Г¤Г ГІ ГЊГ Г°ГЁГ®");
+	scr.center(15, "Soldier Mario");
 	
 	scr.color=15;
-	scr.center(200-15, "(c) 1997-2011 Wiz");
+	scr.center(200-15, "(c) 1997-2020 Wiz");
 
 	scr.update();
 
