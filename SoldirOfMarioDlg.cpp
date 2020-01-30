@@ -80,6 +80,7 @@ CSoldirOfMarioDlg::CSoldirOfMarioDlg(CWnd* pParent /*=NULL*/)
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	
 }
 
 void CSoldirOfMarioDlg::DoDataExchange(CDataExchange* pDX)
@@ -95,7 +96,6 @@ void CSoldirOfMarioDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CSoldirOfMarioDlg, CDialog)
 	//{{AFX_MSG_MAP(CSoldirOfMarioDlg)
 	ON_WM_SYSCOMMAND()
-	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_KEYDOWN()
 	ON_WM_KEYUP()
@@ -169,11 +169,14 @@ void CSoldirOfMarioDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CSoldirOfMarioDlg::OnPaint() 
+/*void CSoldirOfMarioDlg::OnPaint() 
 {
+
+
 	if (IsIconic())
 	{
 		CPaintDC dc(this); // device context for painting
+		
 
 		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
 
@@ -197,28 +200,13 @@ void CSoldirOfMarioDlg::OnPaint()
 
 		char r=0,g=0,b=0;
 
-		/*for(int i=0; i<127; i++)
-		{
 
+		dc.FillSolidRect(&rt, RGB(r,g,127));
 
-			rt.top++;
-
-			rt.left++;
-
-			rt.bottom--;
-
-			rt.right--;
-
-			r++;
-			g++;
-			b++;
-		}*/
-
-		dc.FillSolidRect(&rt, RGB(r,g,b));
-
-		CDialog::OnPaint();
+		//CDialog::OnPaint();
 	}
-}
+}*/
+
 
 // The system calls this to obtain the cursor to display while the user drags
 //  the minimized window.
@@ -298,8 +286,7 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 	ddSDesc.dwSize=sizeof(DDSURFACEDESC);
 
 	//блокируем поверхность, получая указатель на данные
-	HRESULT result = pSurface->Lock(NULL, &ddSDesc,
-		DDLOCK_SURFACEMEMORYPTR| DDLOCK_NOSYSLOCK,NULL);
+	HRESULT result = pSurface->Lock(NULL, &ddSDesc, DDLOCK_SURFACEMEMORYPTR| DDLOCK_NOSYSLOCK,NULL);
 
 	if (result==DD_OK)
 	{
@@ -432,7 +419,7 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 					//lea edi,screendata_smoth
 					mov edi,buf
 					
-				l2z:
+				//l2z:
 					mov esi,sourc
 
 					mov ecx,320*2
@@ -470,9 +457,12 @@ bool CreateSurfaces()
 	bool ok = false;
 
 	ddSDesc.dwSize=sizeof(DDSURFACEDESC);
+
 	ddSDesc.dwFlags= DDSD_CAPS| DDSD_BACKBUFFERCOUNT;
+	
 	ddSDesc.ddsCaps.dwCaps=DDSCAPS_PRIMARYSURFACE
 		| DDSCAPS_FLIP | DDSCAPS_COMPLEX;
+	
 	ddSDesc.dwBackBufferCount =1;
 
 
@@ -543,7 +533,7 @@ void WizOnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void Mesg(char *s)
 {
 	HWND hwnd=0;
-	MessageBox(hwnd, s, "Soldir of Mario", MB_OK);
+	MessageBox(hwnd, s, "Mario", MB_OK);
 }
 
 void WizOnInitialUpdate() 
@@ -868,6 +858,8 @@ int CSoldirOfMarioDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 BOOL CSoldirOfMarioDlg::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
 {
 	// TODO: Add your specialized code here and/or call the base class
+	//pContext->
+
 	
 	return CDialog::Create(IDD, pParentWnd);
 }
@@ -875,6 +867,7 @@ BOOL CSoldirOfMarioDlg::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DW
 BOOL CSoldirOfMarioDlg::PreCreateWindow(CREATESTRUCT& cs) 
 {
 	// TODO: Add your specialized code here and/or call the base class
+
 	
 	
 	return CDialog::PreCreateWindow(cs);
