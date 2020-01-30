@@ -1,0 +1,76 @@
+22:26:37:883 open sound device ok
+22:26:41:772 DirectSoundCreate ok
+22:26:42:004 SetCooperativeLevel ok
+22:26:42:014 CreateSoundBuffer ok
+22:26:42:163 load sound\pop.wav
+22:26:42:163 file.Read ok
+22:26:42:164 load sound\xplode2.wav
+22:26:42:164 file.Read ok
+22:26:42:164 load sound\gem.wav
+22:26:42:164 file.Read ok
+22:26:42:164 load sound\jl87.wav
+22:26:42:166 file.Read ok
+22:26:42:167 load sound\nlevel.wav
+22:26:42:167 file.Read ok
+22:26:42:167 load sound\explode.wav
+22:26:42:167 file.Read ok
+22:26:42:167 load sound\exorcism.wav
+22:26:42:168 file.Read ok
+22:26:42:168 load sound\apple.wav
+22:26:42:168 file.Read ok
+22:26:42:168 load sound\bell1.wav
+22:26:42:169 file.Read ok
+22:26:42:169 load sound\finger.wav
+22:26:42:169 file.Read ok
+22:26:42:169 load sound\health.wav
+22:26:42:169 file.Read ok
+22:26:42:170 load sound\restart.wav
+22:26:42:170 file.Read ok
+22:26:42:170 load sound\menusel.wav
+22:26:42:170 file.Read ok
+22:26:42:170 load sound\fire.wav
+22:26:42:170 file.Read ok
+22:26:42:170 load sound\spring.wav
+22:26:42:171 file.Read ok
+22:26:42:171 load sound\pop.wav
+22:26:42:171 file.Read ok
+22:26:42:171 load sound\gfx3.wav
+22:26:42:172 file.Read ok
+22:26:42:172 load sound\pigegrin.wav
+22:26:42:173 file.Read ok
+22:26:42:173 play: id==20 ERR_SOUNDNOTFOUND
+22:26:43:481 play: id==18 ERR_SOUNDNOTFOUND
+22:26:44:312 play: id==18 ERR_SOUNDNOTFOUND
+22:26:47:413 play: id==20 ERR_SOUNDNOTFOUND
+22:26:54:082 play: id==18 ERR_SOUNDNOTFOUND
+22:26:54:795 play: id==18 ERR_SOUNDNOTFOUND
+22:26:55:085 play: id==20 ERR_SOUNDNOTFOUND
+22:27:14:733 play: id==18 ERR_SOUNDNOTFOUND
+22:27:15:523 play: id==18 ERR_SOUNDNOTFOUND
+22:27:20:125 sound\pop.wav (15)
+22:27:20:125 Lock sound buffer ok
+22:27:26:261 sound\jl87.wav (3)
+22:27:26:261 Lock sound buffer ok
+22:27:29:255 play: id==18 ERR_SOUNDNOTFOUND
+22:27:30:383 play: id==20 ERR_SOUNDNOTFOUND
+22:27:35:931 SOUND::~SOUND start
+22:27:35:931 SOUND::unload(0)
+22:27:35:931 SOUND::unload(1)
+22:27:35:931 SOUND::unload(2)
+22:27:35:931 SOUND::unload(3)
+22:27:35:931 SOUND::unload(4)
+22:27:35:932 SOUND::unload(5)
+22:27:35:932 SOUND::unload(6)
+22:27:35:932 SOUND::unload(7)
+22:27:35:932 SOUND::unload(8)
+22:27:35:932 SOUND::unload(9)
+22:27:35:932 SOUND::unload(10)
+22:27:35:932 SOUND::unload(11)
+22:27:35:932 SOUND::unload(12)
+22:27:35:932 SOUND::unload(13)
+22:27:35:932 SOUND::unload(14)
+22:27:35:933 SOUND::unload(15)
+22:27:35:933 SOUND::unload(16)
+22:27:35:933 SOUND::unload(17)
+22:27:35:933 sound stop ok
+22:27:36:030 close waveout device ok

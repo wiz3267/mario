@@ -345,10 +345,13 @@ void SUPERMARIO::prKeyboardProcess()
 	if (Keyb[KEY_ESC]==1)
 	{
 		//разрешить отображать надпись ексит
-		ShowExit=1;
+		//ShowExit=1;
 
 		//после этого надо опять нажать на ексит
-		Keyb.Set(KEY_ESC,2);
+		//Keyb.Set(KEY_ESC,0);
+		//прекратить игру
+		GAMECYCLE=FALSE;
+
 
 		/*string s(&BigFont,"EXIT?");
 		s.Show(90,88);

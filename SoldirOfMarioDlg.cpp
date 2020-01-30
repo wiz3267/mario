@@ -207,9 +207,9 @@ void CSoldirOfMarioDlg::OnPaint()
 
 		char r=0,g=0,b=0;
 
-		for(int i=0; i<127; i++)
+		/*for(int i=0; i<127; i++)
 		{
-			dc.FillSolidRect(&rt, RGB(r,g,b));
+
 
 			rt.top++;
 
@@ -222,7 +222,9 @@ void CSoldirOfMarioDlg::OnPaint()
 			r++;
 			g++;
 			b++;
-		}
+		}*/
+
+		dc.FillSolidRect(&rt, RGB(r,g,b));
 
 		CDialog::OnPaint();
 	}

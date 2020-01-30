@@ -484,7 +484,9 @@ BOOL SOUND::InitDirectSound()
 	return TRUE;
 }
 
+
 void SOUND::testdirectsound()
+
 {
 	InitDirectSound();
 }
