@@ -18,16 +18,6 @@ static char THIS_FILE[] = __FILE__;
 void WizOnInitialUpdate();
 void WizCloseDirectX();
 
-void vvvv()
-{
-//SoldirOfMarioDlg.cpp
-}
-
-void vvvv222()
-{
-//SoldirOfMarioDlg.cpp
-}
-
 
 #define EXITTOOS_CANNOT			1
 #define EXITTOOS_CAN			2

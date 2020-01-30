@@ -6,13 +6,13 @@
 --------------------Configuration: SoldirOfMario - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSP90C3.tmp" with contents
+Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSP39D4.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/SoldirOfMario.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"G:\github\mario\MY.LIB\Mario3.cpp"
+"G:\github\mario\SoldirOfMarioDlg.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Wiz\AppData\Local\Temp\RSP90C3.tmp" 
-Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSP90C4.tmp" with contents
+Creating command line "cl.exe @C:\Users\Wiz\AppData\Local\Temp\RSP39D4.tmp" 
+Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSP39E4.tmp" with contents
 [
 ddraw.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/SoldirOfMario2011_debug.pdb" /debug /machine:I386 /out:"SoldirOfMario2011_debug.exe" /pdbtype:sept 
 .\Debug\Debug.obj
@@ -38,12 +38,13 @@ ddraw.lib dsound.lib winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:
 .\Debug\StdAfx.obj
 .\Debug\SoldirOfMario.res
 ]
-Creating command line "link.exe @C:\Users\Wiz\AppData\Local\Temp\RSP90C4.tmp"
+Creating command line "link.exe @C:\Users\Wiz\AppData\Local\Temp\RSP39E4.tmp"
 <h3>Output Window</h3>
 Compiling...
-Mario3.cpp
+SoldirOfMarioDlg.cpp
+G:\github\mario\SoldirOfMarioDlg.cpp(464) : warning C4102: 'l2z' : unreferenced label
 Linking...
-Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSPA03F.tmp" with contents
+Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSP48E3.tmp" with contents
 [
 /nologo /o"Debug/SoldirOfMario.bsc" 
 .\Debug\StdAfx.sbr
@@ -67,14 +68,14 @@ Creating temporary file "C:\Users\Wiz\AppData\Local\Temp\RSPA03F.tmp" with conte
 .\Debug\Person.sbr
 .\Debug\SoldirOfMario.sbr
 .\Debug\SoldirOfMarioDlg.sbr]
-Creating command line "bscmake.exe @C:\Users\Wiz\AppData\Local\Temp\RSPA03F.tmp"
+Creating command line "bscmake.exe @C:\Users\Wiz\AppData\Local\Temp\RSP48E3.tmp"
 Creating browse info file...
 <h3>Output Window</h3>
 
 
 
 <h3>Results</h3>
-SoldirOfMario2011_debug.exe - 0 error(s), 0 warning(s)
+SoldirOfMario2011_debug.exe - 0 error(s), 1 warning(s)
 </pre>
 </body>
 </html>
