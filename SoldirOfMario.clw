@@ -16,8 +16,8 @@ ResourceCount=5
 Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
 Resource3=IDD_SOLDIROFMARIO_DIALOG
-Resource4=IDD_SOLDIROFMARIO_DIALOG (English (U.S.))
-Resource5=IDD_ABOUTBOX (English (U.S.))
+Resource4=IDD_ABOUTBOX (English (U.S.))
+Resource5=IDD_SOLDIROFMARIO_DIALOG (English (U.S.))
 
 [CLS:CSoldirOfMarioApp]
 Type=0
