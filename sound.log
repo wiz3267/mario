@@ -1,62 +1,65 @@
-21:29:47:944 open sound device ok
-21:29:49:813 DirectSoundCreate ok
-21:29:49:820 SetCooperativeLevel ok
-21:29:49:825 CreateSoundBuffer ok
-21:29:51:627 load sound\pop.wav
-21:29:51:628 file.Read ok
-21:29:51:628 load sound\xplode2.wav
-21:29:51:628 file.Read ok
-21:29:51:628 load sound\gem.wav
-21:29:51:629 file.Read ok
-21:29:51:629 load sound\jl87.wav
-21:29:51:630 file.Read ok
-21:29:51:630 load sound\nlevel.wav
-21:29:51:633 file.Read ok
-21:29:51:633 load sound\explode.wav
-21:29:51:633 file.Read ok
-21:29:51:633 load sound\exorcism.wav
-21:29:51:634 file.Read ok
-21:29:51:634 load sound\apple.wav
-21:29:51:634 file.Read ok
-21:29:51:634 load sound\bell1.wav
-21:29:51:634 file.Read ok
-21:29:51:634 load sound\finger.wav
-21:29:51:635 file.Read ok
-21:29:51:635 load sound\health.wav
-21:29:51:635 file.Read ok
-21:29:51:635 load sound\restart.wav
-21:29:51:635 file.Read ok
-21:29:51:636 load sound\menusel.wav
-21:29:51:636 file.Read ok
-21:29:51:636 load sound\fire.wav
-21:29:51:636 file.Read ok
-21:29:51:637 load sound\spring.wav
-21:29:51:637 file.Read ok
-21:29:51:637 load sound\pop.wav
-21:29:51:637 file.Read ok
-21:29:51:637 load sound\gfx3.wav
-21:29:51:638 file.Read ok
-21:29:51:638 load sound\pigegrin.wav
-21:29:51:638 file.Read ok
-21:29:51:638 play: id==20 ERR_SOUNDNOTFOUND
-21:29:55:761 SOUND::~SOUND start
-21:29:55:761 SOUND::unload(0)
-21:29:55:761 SOUND::unload(1)
-21:29:55:761 SOUND::unload(2)
-21:29:55:761 SOUND::unload(3)
-21:29:55:761 SOUND::unload(4)
-21:29:55:761 SOUND::unload(5)
-21:29:55:761 SOUND::unload(6)
-21:29:55:761 SOUND::unload(7)
-21:29:55:761 SOUND::unload(8)
-21:29:55:761 SOUND::unload(9)
-21:29:55:761 SOUND::unload(10)
-21:29:55:761 SOUND::unload(11)
-21:29:55:761 SOUND::unload(12)
-21:29:55:761 SOUND::unload(13)
-21:29:55:761 SOUND::unload(14)
-21:29:55:761 SOUND::unload(15)
-21:29:55:761 SOUND::unload(16)
-21:29:55:761 SOUND::unload(17)
-21:29:55:762 sound stop ok
-21:29:56:368 close waveout device ok
+12:05:17:643 open sound device ok
+12:05:24:004 DirectSoundCreate ok
+12:05:24:020 SetCooperativeLevel ok
+12:05:24:244 CreateSoundBuffer ok
+12:05:26:589 load sound\pop.wav
+12:05:26:634 file.Read ok
+12:05:26:634 load sound\xplode2.wav
+12:05:26:643 file.Read ok
+12:05:26:643 load sound\gem.wav
+12:05:26:684 file.Read ok
+12:05:26:684 load sound\jl87.wav
+12:05:26:692 file.Read ok
+12:05:26:692 load sound\nlevel.wav
+12:05:26:700 file.Read ok
+12:05:26:700 load sound\explode.wav
+12:05:26:742 file.Read ok
+12:05:26:742 load sound\exorcism.wav
+12:05:26:766 file.Read ok
+12:05:26:769 load sound\apple.wav
+12:05:26:783 file.Read ok
+12:05:26:783 load sound\bell1.wav
+12:05:26:791 file.Read ok
+12:05:26:791 load sound\finger.wav
+12:05:26:800 file.Read ok
+12:05:26:800 load sound\health.wav
+12:05:26:809 file.Read ok
+12:05:26:809 load sound\restart.wav
+12:05:26:830 file.Read ok
+12:05:26:831 load sound\menusel.wav
+12:05:26:846 file.Read ok
+12:05:26:846 load sound\fire.wav
+12:05:26:883 file.Read ok
+12:05:26:883 load sound\spring.wav
+12:05:26:890 file.Read ok
+12:05:26:890 load sound\pop.wav
+12:05:26:891 file.Read ok
+12:05:26:891 load sound\gfx3.wav
+12:05:26:908 file.Read ok
+12:05:26:909 load sound\pigegrin.wav
+12:05:26:916 file.Read ok
+12:05:26:916 play: id==20 ERR_SOUNDNOTFOUND
+12:05:33:578 play: id==18 ERR_SOUNDNOTFOUND
+12:05:34:088 play: id==18 ERR_SOUNDNOTFOUND
+12:05:46:286 play: id==20 ERR_SOUNDNOTFOUND
+12:05:49:574 SOUND::~SOUND start
+12:05:49:574 SOUND::unload(0)
+12:05:49:574 SOUND::unload(1)
+12:05:49:575 SOUND::unload(2)
+12:05:49:575 SOUND::unload(3)
+12:05:49:575 SOUND::unload(4)
+12:05:49:575 SOUND::unload(5)
+12:05:49:575 SOUND::unload(6)
+12:05:49:575 SOUND::unload(7)
+12:05:49:575 SOUND::unload(8)
+12:05:49:575 SOUND::unload(9)
+12:05:49:575 SOUND::unload(10)
+12:05:49:575 SOUND::unload(11)
+12:05:49:575 SOUND::unload(12)
+12:05:49:575 SOUND::unload(13)
+12:05:49:575 SOUND::unload(14)
+12:05:49:575 SOUND::unload(15)
+12:05:49:575 SOUND::unload(16)
+12:05:49:575 SOUND::unload(17)
+12:05:49:575 sound stop ok
+12:05:50:261 close waveout device ok
