@@ -1,6 +1,3 @@
-//12:15 1500 тгд
-
-//Mario1.cpp
 ////////////////////////////////////////////////////////
 //						      //
 // MARIO1.CPP содержит редко модифицируемые функции   //
@@ -646,6 +643,7 @@ void SUPERMARIO::LoadSounds(void)
 	CString lame1="lame.exe --decode zastavka.mp3 zastavka.wav";
 	CString lame2="lame.exe --decode loop.mp3 loop.wav";
 	CString lame3="lame.exe --decode loop_zachita.mp3 loop_zachita.wav";
+	CString lame4="lame.exe --decode musicformario.mp3 musicformario.wav";
 
 	SoundDeCoding(lame1, "zastavka.wav");
 
@@ -665,6 +663,14 @@ void SUPERMARIO::LoadSounds(void)
 
 	scr.clear();
 	Msg(" ЗАГРУЗКА 3 ЗАВЕРШЕНА ", 9);
+	scr.update();
+
+
+
+	SoundDeCoding(lame4,"musicformario.wav");
+
+	scr.clear();
+	Msg(" ЗАГРУЗКА 4 ЗАВЕРШЕНА ", 9);
 	scr.update();
 
 
@@ -700,6 +706,9 @@ void SUPERMARIO::LoadSounds(void)
 	Sound.load("sound\\loop_zachita.wav",44100, SOUND::MONOSTEREO::MONO, 
 		SOUND::BITCOUNT::BIT16,SND_GHOTIC_FAST, dataoffset);
 */
+
+	Sound.load("sound\\musicformario.wav",44100, SOUND::MONOSTEREO::STEREO, 
+ 		SOUND::BITCOUNT::BIT16, SND_ZASTAVKA, dataoffset);
 }
 
 //=========== загрузка музыки ==============

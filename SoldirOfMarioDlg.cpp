@@ -1,5 +1,26 @@
 // SoldirOfMarioDlg.cpp : implementation file
 //
+//TODO - ЧТО СДЕЛАТЬ 26 февраля 2020
+//РАЗМЕР БУФЕРА ЭКРАНА БОЛЬШЕ ЧЕМ 320x200 ! ! !
+//CTRL+O   открытие окна с файлом проекта, редакированием и перезапуск игры
+
+//с возможностью отмены
+
+//музыку загрузить (+)
+
+//убрать мерцание экрана
+
+//проработать меню, регулировка уровеня звука
+
+//FPS - иногда FPS работает в два раза медленней
+
+//подумать над ускорением загрузки/декодирования звука
+//или использовать библиотеку BASS для проигрывания звуков *.mp3
+
+//изменить название игры, и классов, и переменных
+//посмотреть инструмент для этого
+
+
 
 #include "stdafx.h"
 #include "SoldirOfMario.h"
@@ -17,6 +38,9 @@ static char THIS_FILE[] = __FILE__;
 
 void WizOnInitialUpdate();
 void WizCloseDirectX();
+
+//
+CPoint CurrentWindowPosition;
 
 
 #define EXITTOOS_CANNOT			1
@@ -112,6 +136,7 @@ BEGIN_MESSAGE_MAP(CSoldirOfMarioDlg, CDialog)
 	ON_WM_RBUTTONDOWN()
 	ON_WM_RBUTTONUP()
 	ON_WM_CREATE()
+	ON_WM_MOVE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -260,7 +285,7 @@ DWORD WINAPI TimerFunction(LPVOID param)
 
 	while(1)
 	{
-		Sleep(10);
+		Sleep(15);
 		
 		Timer.TotalCounter++;
 		Timer.Counter++;
@@ -269,10 +294,15 @@ DWORD WINAPI TimerFunction(LPVOID param)
 	}
 }
 
-	COLORREF screendata_smoth[320*200*4];
+//содержит экран 320x200 в два раза больше
+COLORREF screendata_smoth[320*2 * 200*2];
 
 bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 {
+
+
+	if (CurrentWindowPosition.y<0) return 0;
+
 	//проверка на "потерю" поверхности
 	if (pSurface->IsLost())
 	{
@@ -303,6 +333,8 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 
 		COLORREF screendata[320*200];
 
+		int ScaleX=2,ScaleY=2;
+
 
 		scr.ConvertDoubleBufferToTrueColor(screendata);
 
@@ -310,11 +342,13 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 		for(int y=0; y<200; y++)
 		{
 			COLORREF clr=screendata[y*320+x];
+			
 			DWORD I=y*2*640+x*2;
+
 			screendata_smoth[I]=clr;
 			screendata_smoth[I+1]=clr;
-			screendata_smoth[I+640]=clr;
-			screendata_smoth[I+640+1]=clr;
+			screendata_smoth[I+320*2]=clr;
+			screendata_smoth[I+320*2+1]=clr;
 
 
 			//screendata_smoth[y*640+x+1]=screendata[y*320+x];
@@ -328,24 +362,22 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 		//корректируем расположение буфера
 		if (DISPLAY_HORIZONTAL>= 640 && DISPLAY_VERTICAL>=400)
 		{
-			int ScaleX=3,ScaleY=3;
-
 			//центровка oX
-			buf+=(ddSDesc.dwWidth*4-320*4*ScaleX)/2;
+			//buf+=(ddSDesc.dwWidth*4-320*4*ScaleX)/2;
 			//buf+=WindowRect.left*4;
 
 			//центровка oY
-			buf+=(ddSDesc.dwHeight-200*ScaleY)/2*add_pitch;
+			//buf+=(ddSDesc.dwHeight-200*ScaleY)/2*add_pitch;
 			//buf+=ddSDesc.dwWidth*WindowRect.top;
 
 
 			//ВНИМАНИЕ!! верно только для разрешения не ниже 640x400
 
-			buf=(char*)screendata_smoth;
+			//buf=(char*)screendata_smoth;
 			
 			
-			for(int i=0; i<400-1;i++)
-			{
+			//for(int i=0; i<400-1;i++)
+			//{
 				/*
 				_asm 
 				{
@@ -390,7 +422,7 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 				sourc+=640*4;
 				buf+=640*4;
 				*/
-			}
+			//}
 			
 
 
@@ -399,18 +431,22 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 		sourc=(BYTE*)screendata_smoth;
 		
 
-		ScaleX=2;
-		ScaleY=2;
+//		ScaleX=3;
+//		ScaleY=3;
 		//центровка oX
-		buf+=(ddSDesc.dwWidth*4-320*4*ScaleX)/2;
+		//buf+=(ddSDesc.dwWidth*4-320*4*ScaleX)/2;
+		
+		buf+=CurrentWindowPosition.x * 4;
+
 		//buf+=WindowRect.left*4;
 
 		//центровка oY
-		buf+=(ddSDesc.dwHeight-200*ScaleY)/2*add_pitch;
+		buf+=CurrentWindowPosition.y * ddSDesc.dwWidth*4;
+		//buf+=(ddSDesc.dwHeight-200*ScaleY)/2*add_pitch;
 		//buf+=ddSDesc.dwWidth*WindowRect.top;
 
 
-			for(i=0; i<400-1;i++)
+			for(int i=0; i<400-1;i++)
 			{
 				{
 				_asm 
@@ -427,14 +463,13 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 				l1z:
 					lodsd
 					stosd
-					
 					loop l1z
-				
+
 					popa
 				}
 				buf+=add_pitch;
 				}
-				sourc+=320*4*2;
+				sourc+=320*4 * 2;
 			}
 			
 
@@ -615,6 +650,7 @@ void WizOnInitialUpdate()
 	SetCursor(LoadCursor(NULL,IDC_NO));
 }
 
+//вызывается из метода Screen::Update()
 void RedrawMarioWindow()
 {
 	if (m_pPrimarySurface!=NULL)
@@ -769,11 +805,11 @@ void CSoldirOfMarioDlg::OnTimer(UINT nIDEvent)
 
 	if (ExitToOS == EXITTOOS_CANNOT) 
 	{
-		SetCursor(NULL);	
+		//SetCursor(NULL);	
 	}
 	else 
 	{
-		SetCursor(LoadCursor(NULL,IDC_ARROW));
+		//SetCursor(LoadCursor(NULL,IDC_ARROW));
 	}
 
 	if (ExitToOS == EXITTOOS_AUTOMATIC)
@@ -815,6 +851,8 @@ void CSoldirOfMarioDlg::OnMouseMove(UINT nFlags, CPoint point)
 
 	Mouse.x=point.x/2;
 	Mouse.y=point.y/2;
+
+	//CurrentWindowPosition=point;
 	
 	CDialog::OnMouseMove(nFlags, point);
 }
@@ -857,9 +895,6 @@ int CSoldirOfMarioDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL CSoldirOfMarioDlg::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
 {
-	// TODO: Add your specialized code here and/or call the base class
-	//pContext->
-
 	
 	return CDialog::Create(IDD, pParentWnd);
 }
@@ -867,8 +902,21 @@ BOOL CSoldirOfMarioDlg::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DW
 BOOL CSoldirOfMarioDlg::PreCreateWindow(CREATESTRUCT& cs) 
 {
 	// TODO: Add your specialized code here and/or call the base class
+//	CREATESTRUCT *s;
+
+
 
 	
 	
 	return CDialog::PreCreateWindow(cs);
+}
+
+void CSoldirOfMarioDlg::OnMove(int x, int y) 
+{
+	CDialog::OnMove(x, y);
+	
+	// TODO: Add your message handler code here
+	CurrentWindowPosition.x=x;
+	CurrentWindowPosition.y=y;
+	
 }
