@@ -295,11 +295,791 @@ DWORD WINAPI TimerFunction(LPVOID param)
 }
 
 //содержит экран 320x200 в два раза больше
-COLORREF screendata_smoth[320*2 * 200*2];
+//COLORREF screendata_smoth[320*2 * 200*2];
+COLORREF *screendata_smoth = NULL;
+
+long	*screendata_1x1 = NULL;
+long	*screendata_transform = NULL;
+long	*screendata_forCopy;
+long	*screendata_trans = NULL;
+long	**screendata_ref = NULL;
+char	*loadArray = NULL;
+int		sizeOfLoadArray = 1000;
+
+int		*arrX = NULL;
+int		*arrY = NULL;
+bool	useTransparent = true;
+bool	useLowResTransform = false;
+bool	useScrollMode = true;
+bool	useLoadEffect = false;
+
+int		borderW = 20;
+int		borderH = 20;
+int		borderSeg = 300;
+long	borderColor0 = 0x0000ffL;
+//long	borderColor1 = 0xffff00L;
+long	borderColor1 = 0x00ffffL;
+//long	borderColor1 = 0xff00ffL;
+long	borderOffset = 0;
+
+bool	useWideBorderScreen = true;
+bool	useWideBorderScreenSmooth = false;
+bool	useExtendedBorder = true;
+bool	useExtendedBorderTransparent = false;
+
+int		*borderScreenOffset = NULL;
+int		*borderScreenOffset1 = NULL;
+int		*borderScreenOffset2 = NULL;
+int		*borderScreenOffset3 = NULL;
+int		*borderScreenOffset4 = NULL;
+
+int		screenEffectType = 1;
+int		screenEffectCount = 6;
+
+double getAtEdgeY( double x1, double y1, double x2, double y2, double x )
+{
+	// ({x1, y1} + ({x2, y2} - {x1, y1}) * t).x = x
+	// x1 + (x2 - x1) * t = x
+	// t = (x - x1) / (x2 - x1)
+	// y1 + (y2 - y1) * t
+
+	double	t = (x - x1) / (x2 - x1);
+	double	y = y1 + (y2 - y1) * t;
+
+	return y;
+}
+
+double uFunc1 (double t)
+{
+	double v = 0.5 + asin( -1 + 2 * t ) / 3.14159;
+
+	if (v < 0) v = 0;
+	if (v > 1) v = 1;
+
+	return v;
+}
+
+double uFunc2 (double t)
+{
+//	double points[11] = { 0.0, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 1.0 };	
+	double points[11] = { 0.0, 0.2, 0.3, 0.35, 0.45, 0.5, 0.6, 0.65, 0.7, 0.8, 1.0 };		
+	int	   k = (int)(t / 0.1);
+
+	double x1 = 0.1 * k;
+	double x2 = 0.1 * (k + 1);
+	double y1 = points[k];
+	double y2 = points[k + 1];
+	double x = t;
+	double y = getAtEdgeY( x1, y1, x2, y2, x );
+	double v = y;
+	
+	if (v < 0) v = 0;
+	if (v > 1) v = 1;
+
+	return v;
+}
+
+int eFunc1( int k, int n )
+{
+	double	t = ((double)k) / (n - 1);
+	int		r = (int)(uFunc1( t ) * (n - 1));
+
+	if (r < 0) r = 0;
+	if (r >= n) r = n - 1;
+
+	return r;
+}
+
+int *aFunc1( int n )
+{
+	int		*arr = new int[n];
+
+	for( int i = 0; i < n; i++ )
+	{
+		arr[i] = eFunc1( i, n );
+	}
+	return arr;
+}
+
+void DrawBorder ( int bufW, int bufH )
+{
+	static	long *wideScreen = NULL;
+	static  long **ws_screendata_ref = NULL;
+	int		wideScreenW = 320 + borderW * 2;
+	int		wideScreenH = 200 + borderH * 2;
+	int		gx, gy;
+	
+	if (wideScreen == NULL)
+	{
+		wideScreen = new long [wideScreenW * wideScreenH];
+	}
+
+	for( gy = 0; gy < wideScreenH; gy++ )
+	{
+		for( gx = 0; gx < wideScreenW; gx++ )
+		{
+			long	color = 0;			
+			
+			if (gx < borderW || gx > borderW + 319 || gy < borderH || gy > borderH + 199)
+			{
+				int		borderCount = gy * wideScreenW + gx;
+				int		seg = borderCount / borderSeg;
+				int		borderIndex = (borderOffset + seg) % sizeOfLoadArray;
+				char	borderBit = loadArray [ borderIndex ];
+
+				if (borderBit == 0) 
+					color = borderColor0;
+				else
+					color = borderColor1;
+			}
+			else
+			{
+				int		x = gx - borderW;
+				int		y = gy - borderH;
+
+				color = screendata_1x1[ y * 320 + x ];
+			}
+			wideScreen[ wideScreenW * gy + gx ] = color;
+		}
+	}
+
+	for( gy = 0; gy < wideScreenH; gy++ )
+	{
+		for( gx = 0; gx < wideScreenW; gx++ )
+		{
+			int		x, y;
+
+			if (useExtendedBorderTransparent)
+			{
+				x = (gx * 319) / wideScreenW;
+				y = (gy * 199) / wideScreenH;
+			}
+			else
+			{
+				x = gx - borderW;
+				y = gy - borderH;
+			}
+
+			long	color1 = wideScreen[ gy * wideScreenW + gx ];		
+			long	color2 = screendata_trans[y * 320 + x];
+			int		t = (((unsigned char*)&color2)[3]);
+
+			int		r1 = ((unsigned char*)&color1)[0];
+			int		g1 = ((unsigned char*)&color1)[1];			
+			int		b1 = ((unsigned char*)&color1)[2];			
+
+			int		r2 = ((unsigned char*)&color2)[0];
+			int		g2 = ((unsigned char*)&color2)[1];			
+			int		b2 = ((unsigned char*)&color2)[2];			
+
+			int		r = r1 + ((r2 - r1) * t) / 255;
+			int		g = g1 + ((g2 - g1) * t) / 255;
+			int		b = b1 + ((b2 - b1) * t) / 255;
+
+			if (r < 0) r = 0;
+			if (r > 255) r = 255;
+			if (g < 0) g = 0;
+			if (g > 255) g = 255;
+			if (b < 0) b = 0;
+			if (b > 255) b = 255;
+
+			long			color = 0;
+
+			((char*)&color)[0] = r;
+			((char*)&color)[1] = g;
+			((char*)&color)[2] = b;
+
+			if (useExtendedBorderTransparent)
+				wideScreen[gy * wideScreenW + gx] = color;
+			else
+			{
+				if (gx >= borderW && gx <= borderW + 319 && gy >= borderH && gy <= borderH + 199)
+					wideScreen[gy * wideScreenW + gx] = color;
+			}
+		}
+	}
+
+	if (ws_screendata_ref == NULL)
+	{
+		ws_screendata_ref = new long* [bufW * bufH];
+
+		for( gy = 0; gy < bufH; gy++ )
+		{
+			for( gx = 0; gx < bufW; gx++ )
+			{
+				int	newGx = (gx * (wideScreenW - 1)) / (bufW - 1);
+				int newGy = (gy * (wideScreenH - 1)) / (bufH - 1);
+
+				ws_screendata_ref[ gy * bufW + gx ] = &wideScreen[ newGy * wideScreenW + newGx ];
+			}
+		}
+	}
+
+	long **pDatSrc = ws_screendata_ref;
+	long *pDat = screendata_forCopy;
+
+	for( gy = 0; gy < bufH; gy++ )
+	{
+		for( gx = 0; gx < bufW; gx++ )
+		{
+			*pDat++ = **pDatSrc;
+			pDatSrc++;
+		}
+	}
+}
 
 bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 {
+	static int keyYCount = 0;
+	
+	if (Keyb[KEY_Y])
+	{
+		keyYCount++;
 
+		if (keyYCount > 10)
+		{
+			screenEffectType++;
+			if (screenEffectType > screenEffectCount)
+				screenEffectType = 1;
+
+			keyYCount = 0;
+		}
+	}
+	
+	if (screenEffectType == 1)
+	{
+		useLowResTransform = false;
+		useScrollMode = false;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = true;
+		useExtendedBorderTransparent = true;
+		borderColor0 = 0x0000ffL;
+		borderColor1 = 0x00ffffL;
+		useTransparent = true;
+	}
+	if (screenEffectType == 2)
+	{
+		useLowResTransform = false;
+		useScrollMode = false;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = true;
+		useExtendedBorderTransparent = false;
+		borderColor0 = 0x0000ffL;
+		borderColor1 = 0x00ffffL;
+		useTransparent = true;
+	}
+	if (screenEffectType == 3)
+	{
+		useLowResTransform = true;
+		useScrollMode = false;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = false;
+		useExtendedBorderTransparent = false;
+		useTransparent = true;
+	}
+	if (screenEffectType == 4)
+	{
+		useLowResTransform = true;
+		useScrollMode = true;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = false;
+		useExtendedBorderTransparent = false;
+		useTransparent = true;
+	}
+	if (screenEffectType == 5)
+	{
+		useLowResTransform = false;
+		useScrollMode = false;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = false;
+		useExtendedBorderTransparent = false;
+		useTransparent = true;
+	}
+	if (screenEffectType == 6)
+	{
+		useLowResTransform = false;
+		useScrollMode = false;
+		useLoadEffect = false;
+		useWideBorderScreen = false;
+		useWideBorderScreenSmooth = false;
+		useExtendedBorder = false;
+		useExtendedBorderTransparent = false;
+		useTransparent = false;
+	}
+	
+	int		screenW;
+	int		screenH;
+
+	screenW = GetSystemMetrics( SM_CXSCREEN );
+	screenH = GetSystemMetrics( SM_CYSCREEN );
+
+	if (screendata_smoth == NULL) screendata_smoth = new COLORREF [screenW * screenH];
+	
+	if (CurrentWindowPosition.y < 0) return 0;
+
+	//проверка на "потерю" поверхности
+	if (pSurface->IsLost())
+	{
+		//восстанавливаем поверхность в данном случае
+		pSurface->Restore();
+	}
+
+	DDSURFACEDESC ddSDesc1={0};
+	bool okk = false;
+
+	ddSDesc1.dwSize = sizeof(DDSURFACEDESC);
+
+	//блокируем поверхность, получая указатель на данные
+	HRESULT result = pSurface->Lock( NULL, &ddSDesc1, DDLOCK_SURFACEMEMORYPTR| DDLOCK_NOSYSLOCK,NULL );
+
+	if (result == DD_OK)
+	{
+		char *buf= (char*)ddSDesc1.lpSurface;
+
+		int add_pitch=ddSDesc1.lPitch;
+
+
+		COLORREF screendata[320*200];
+
+		int ScaleX=2,ScaleY=2;
+
+
+		scr.ConvertDoubleBufferToTrueColor(screendata);
+
+//		screendata_1x1 = (long*)screendata;
+
+		if (screendata_1x1 == NULL)
+		{
+			screendata_1x1 = new long [320 * 200];
+		}
+
+		if (loadArray == NULL)
+		{
+			loadArray = new char [sizeOfLoadArray];
+
+			for( int i = 0; i < sizeOfLoadArray; i++ )
+			{
+				int	k = rand() % 1000;
+				
+				if (k < 500)
+					loadArray[i] = 0;
+				else
+					loadArray[i] = 1;
+			}
+		}
+
+		int		gx, gy;
+
+		if (borderScreenOffset == NULL)
+		{
+			borderScreenOffset = new int [320 * 200];
+			borderScreenOffset1 = new int [320 * 200];
+			borderScreenOffset2 = new int [320 * 200];
+			borderScreenOffset3 = new int [320 * 200];
+			borderScreenOffset4 = new int [320 * 200];
+
+			int		x1 = borderW;
+			int		x2 = 319 - borderW;
+			int		y1 = borderH;
+			int		y2 = 199 - borderH;
+			
+			for( gy = 0; gy < 200; gy++ )
+			{
+				for( gx = 0; gx < 320; gx++ )
+				{
+					int		valueOffset = 0;					
+					int		valueOffset1 = 0;
+					int		valueOffset2 = 0;
+					int		valueOffset3 = 0;
+					int		valueOffset4 = 0;
+					
+					if (gx >= x1 && gx <= x2 && gy >= y1 && gy <= y2)
+					{
+						double	tx, ty;
+						int		nGX, nGY;
+						
+						// основное
+						tx = ((double)(gx - x1)) / (x2 - x1);
+						ty = ((double)(gy - y1)) / (y2 - y1);
+
+						if (tx < 0) tx = 0;
+						if (tx > 1) tx = 1;
+						if (ty < 0) ty = 0;
+						if (ty > 1) ty = 1;
+
+						nGX = (int)319 * tx;
+						nGY = (int)199 * ty;
+
+						if (nGX < 0) nGX = 0;
+						if (nGX > 319) nGX = 319;
+						if (nGY < 0) nGY = 0;
+						if (nGY > 199) nGY = 199;
+
+						valueOffset = nGY * 320 + nGX;
+
+						// пиксель 1
+						tx = ((double)(gx + 0.25 - x1)) / (x2 - x1);
+						ty = ((double)(gy + 0.25 - y1)) / (y2 - y1);
+
+						if (tx < 0) tx = 0;
+						if (tx > 1) tx = 1;
+						if (ty < 0) ty = 0;
+						if (ty > 1) ty = 1;
+
+						nGX = (int)319 * tx;
+						nGY = (int)199 * ty;
+
+						if (nGX < 0) nGX = 0;
+						if (nGX > 319) nGX = 319;
+						if (nGY < 0) nGY = 0;
+						if (nGY > 199) nGY = 199;
+
+						valueOffset1 = nGY * 320 + nGX;
+
+						// пиксель 2
+						tx = ((double)(gx + 0.75 - x1)) / (x2 - x1);
+						ty = ((double)(gy + 0.25 - y1)) / (y2 - y1);
+
+						if (tx < 0) tx = 0;
+						if (tx > 1) tx = 1;
+						if (ty < 0) ty = 0;
+						if (ty > 1) ty = 1;
+
+						nGX = (int)319 * tx;
+						nGY = (int)199 * ty;
+
+						if (nGX < 0) nGX = 0;
+						if (nGX > 319) nGX = 319;
+						if (nGY < 0) nGY = 0;
+						if (nGY > 199) nGY = 199;
+
+						valueOffset2 = nGY * 320 + nGX;
+
+						// пиксель 3
+						tx = ((double)(gx + 0.25 - x1)) / (x2 - x1);
+						ty = ((double)(gy + 0.75 - y1)) / (y2 - y1);
+
+						if (tx < 0) tx = 0;
+						if (tx > 1) tx = 1;
+						if (ty < 0) ty = 0;
+						if (ty > 1) ty = 1;
+
+						nGX = (int)319 * tx;
+						nGY = (int)199 * ty;
+
+						if (nGX < 0) nGX = 0;
+						if (nGX > 319) nGX = 319;
+						if (nGY < 0) nGY = 0;
+						if (nGY > 199) nGY = 199;
+
+						valueOffset3 = nGY * 320 + nGX;
+
+						// пиксель 4
+						tx = ((double)(gx + 0.75 - x1)) / (x2 - x1);
+						ty = ((double)(gy + 0.75 - y1)) / (y2 - y1);
+
+						if (tx < 0) tx = 0;
+						if (tx > 1) tx = 1;
+						if (ty < 0) ty = 0;
+						if (ty > 1) ty = 1;
+
+						nGX = (int)319 * tx;
+						nGY = (int)199 * ty;
+
+						if (nGX < 0) nGX = 0;
+						if (nGX > 319) nGX = 319;
+						if (nGY < 0) nGY = 0;
+						if (nGY > 199) nGY = 199;
+
+						valueOffset4 = nGY * 320 + nGX;
+					}
+					borderScreenOffset[ gy * 320 + gx ] = valueOffset;
+					borderScreenOffset1[ gy * 320 + gx ] = valueOffset1;
+					borderScreenOffset2[ gy * 320 + gx ] = valueOffset2;
+					borderScreenOffset3[ gy * 320 + gx ] = valueOffset3;
+					borderScreenOffset4[ gy * 320 + gx ] = valueOffset4;
+				}
+			}
+		}
+
+		borderOffset++;
+		for( gy = 0; gy < 200; gy++ )
+		{
+			for( gx = 0; gx < 320; gx++ )
+			{
+				long	pix = screendata[ gy * 320 + gx ];
+				
+				if (useLoadEffect)
+				{
+					if (gx < borderW || gx > 319 - borderW || gy < borderH || gy > 199 - borderH)
+					{
+						int		borderCount = gy * 320 + gx;
+						int		seg = borderCount / borderSeg;
+						int		borderIndex = (borderOffset + seg) % sizeOfLoadArray;
+						char	borderBit = loadArray [ borderIndex ];
+
+						if (borderBit == 0) 
+							pix = borderColor0;
+						else
+							pix = borderColor1;
+
+						borderCount++;
+					}
+					else
+					{
+						if (!useWideBorderScreen)
+						{
+							if (!useWideBorderScreenSmooth)
+							{
+								int	newOffset = borderScreenOffset[320 * gy + gx];
+								pix = screendata[ newOffset ];
+							}
+							else
+							{
+								int offset = 320 * gy + gx;
+								int newOffset1 = borderScreenOffset1[offset];
+								int newOffset2 = borderScreenOffset2[offset];
+								int newOffset3 = borderScreenOffset3[offset];
+								int newOffset4 = borderScreenOffset4[offset];
+								long pix1 = screendata[ newOffset1 ];
+								long pix2 = screendata[ newOffset2 ];
+								long pix3 = screendata[ newOffset3 ];
+								long pix4 = screendata[ newOffset4 ];
+
+								int r1 = ((unsigned char*)&pix1)[0];
+								int g1 = ((unsigned char*)&pix1)[1];
+								int b1 = ((unsigned char*)&pix1)[2];
+
+								int r2 = ((unsigned char*)&pix2)[0];
+								int g2 = ((unsigned char*)&pix2)[1];
+								int b2 = ((unsigned char*)&pix2)[2];
+
+								int r3 = ((unsigned char*)&pix3)[0];
+								int g3 = ((unsigned char*)&pix3)[1];
+								int b3 = ((unsigned char*)&pix3)[2];
+
+								int r4 = ((unsigned char*)&pix4)[0];
+								int g4 = ((unsigned char*)&pix4)[1];
+								int b4 = ((unsigned char*)&pix4)[2];
+
+								int		r = (r1 + r2 + r3 + r4) >> 2;
+								int		g = (g1 + g2 + g3 + g4) >> 2;
+								int		b = (b1 + b2 + b3 + b4) >> 2;
+
+								pix = 0;
+
+								((unsigned char*)&pix)[0] = r;
+								((unsigned char*)&pix)[1] = g;
+								((unsigned char*)&pix)[2] = b;
+							}
+						}
+					}
+				}
+				
+				screendata_1x1[ gy * 320 + gx ] = pix;
+			}
+		}
+
+		int		bufW = screenW;
+		int		bufH = screenH;
+
+		if (screendata_trans == NULL)
+		{
+			screendata_trans = new long [320 * 200];
+
+			FILE	*fp = fopen( "tvset.raw", "rb" );
+			char	*pdat = (char*)screendata_trans;
+
+			for( int i = 0; i < 320 * 200; i++ )
+			{
+				int		r = (unsigned char)fgetc(fp);
+				int		g = (unsigned char)fgetc(fp);
+				int		b = (unsigned char)fgetc(fp);
+				int		t = 255 - (unsigned char)fgetc(fp);
+
+				*pdat++ = b;
+				*pdat++ = g;
+				*pdat++ = r;
+				*pdat++ = t;
+			}
+			
+			fclose( fp );
+		}
+
+		if (!useExtendedBorder && useTransparent)
+		{
+			for( gy = 0; gy < 200; gy++ )
+			{
+				for( gx = 0; gx < 320; gx++ )
+				{
+					long	color1 = screendata_1x1[gy * 320 + gx];		
+					long	color2 = screendata_trans[gy * 320 + gx];
+					int		t = (((unsigned char*)&color2)[3]);
+
+					int		r1 = ((unsigned char*)&color1)[0];
+					int		g1 = ((unsigned char*)&color1)[1];			
+					int		b1 = ((unsigned char*)&color1)[2];			
+
+					int		r2 = ((unsigned char*)&color2)[0];
+					int		g2 = ((unsigned char*)&color2)[1];			
+					int		b2 = ((unsigned char*)&color2)[2];			
+
+					int		r = r1 + ((r2 - r1) * t) / 255;
+					int		g = g1 + ((g2 - g1) * t) / 255;
+					int		b = b1 + ((b2 - b1) * t) / 255;
+
+					if (r < 0) r = 0;
+					if (r > 255) r = 255;
+					if (g < 0) g = 0;
+					if (g > 255) g = 255;
+					if (b < 0) b = 0;
+					if (b > 255) b = 255;
+
+					long			color = 0;
+
+					((char*)&color)[0] = r;
+					((char*)&color)[1] = g;
+					((char*)&color)[2] = b;
+
+					screendata_1x1[gy * 320 + gx] = color;
+				}
+			}
+		}
+
+		if (useLowResTransform)
+		{
+			if (arrX == NULL || arrY == NULL)
+			{
+				arrX = aFunc1( 320 );
+				arrY = aFunc1( 200 );
+			}
+			
+			if (screendata_transform == NULL)
+			{
+				screendata_transform = new long [320 * 200];
+			}
+
+			for( gy = 0; gy < 200; gy++ )
+			{
+				for( gx = 0; gx < 320; gx++ )
+				{
+					int newGX = arrX[gx];
+					int newGY = arrY[gy];
+
+					if (useScrollMode)
+					{
+						newGX = gx;
+
+						double	y1 = 199 * (0.1 - sin( gx / 319.0 * 3.14159 ) * 0.1);
+						double	y2 = 199 * (0.9 + sin( gx / 319.0 * 3.14159 ) * 0.1);
+						double	t = gy / 199.0;
+						double	y = y1 + (y2 - y1) * t;
+
+						newGY = (int)y;
+						if (newGY < 0) newGY = 0;
+						if (newGY > 199) newGY = 199;
+					}
+
+					screendata_transform[gy * 320 + gx] = screendata_1x1[newGY * 320 + newGX];
+				}
+			}
+
+			for( gy = 0; gy < 200; gy++ )
+			{
+				for( gx = 0; gx < 320; gx++ )
+				{
+					screendata_1x1[gy * 320 + gx] = screendata_transform[gy * 320 + gx];
+				}
+			}
+		}
+
+		screendata_forCopy = (long*)screendata_smoth;
+
+		
+		if (screendata_ref == NULL)
+		{
+			screendata_ref = new long* [bufW * bufH];
+
+			for( gy = 0; gy < bufH; gy++ )
+			{
+				for( gx = 0; gx < bufW; gx++ )
+				{
+					int	newGx = (gx * 319) / (bufW - 1);
+					int newGy = (gy * 199) / (bufH - 1);
+
+					screendata_ref[ gy * bufW + gx ] = &screendata_1x1[ newGy * 320 + newGx ];
+				}
+			}
+		}
+
+		if (useExtendedBorder)
+		{
+			DrawBorder( bufW, bufH );
+		}
+		else
+		{
+
+			long **pDatSrc = screendata_ref;
+			long *pDat = screendata_forCopy;
+
+			for( gy = 0; gy < bufH; gy++ )
+			{
+				for( gx = 0; gx < bufW; gx++ )
+				{
+					*pDat++ = **pDatSrc;
+					pDatSrc++;
+				}
+			}
+		}
+	
+		//если установлено соотвествующее разрешение
+		//корректируем расположение буфера
+		buf= (char*) ddSDesc1.lpSurface;
+		BYTE* sourc=(BYTE*)screendata_smoth;
+		
+//		buf+=CurrentWindowPosition.x * 4;
+//		buf+=CurrentWindowPosition.y * ddSDesc1.dwWidth*4;
+
+		for( int i = 0; i < screenH-1; i++ )
+		{
+			{
+			_asm 
+			{
+				pusha
+				mov edi,buf
+				mov esi,sourc
+				mov ecx, [screenW]
+				cld
+			l1zz:
+				lodsd
+				stosd
+				loop l1zz
+
+				popa
+			}
+//			buf+=add_pitch;
+			buf += screenW * 4;
+			}
+			sourc += screenW * 4;
+		}
+
+
+		pSurface->Unlock(ddSDesc1.lpSurface);
+		okk=true;
+	}
+
+	return okk;
+//------------------ oldCode ------------------------------
 
 	if (CurrentWindowPosition.y<0) return 0;
 
@@ -316,9 +1096,9 @@ bool CopyDoubleBufferToScreen(LPDIRECTDRAWSURFACE pSurface)
 	ddSDesc.dwSize=sizeof(DDSURFACEDESC);
 
 	//блокируем поверхность, получая указатель на данные
-	HRESULT result = pSurface->Lock(NULL, &ddSDesc, DDLOCK_SURFACEMEMORYPTR| DDLOCK_NOSYSLOCK,NULL);
+	HRESULT result1 = pSurface->Lock(NULL, &ddSDesc, DDLOCK_SURFACEMEMORYPTR| DDLOCK_NOSYSLOCK,NULL);
 
-	if (result==DD_OK)
+	if (result1==DD_OK)
 	{
 		UINT hei=ddSDesc.dwHeight;
 

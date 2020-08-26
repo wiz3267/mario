@@ -1,209 +1,68 @@
-14:21:23:809 Open sound device FAILED!
-14:21:26:399 DirectSoundCreate ok
-14:21:26:478 SetCooperativeLevel ok
-14:21:26:484 CreateSoundBuffer ok
-14:21:26:900 load sound\pop.wav
-14:21:26:901 file.Read ok
-14:21:26:901 load sound\xplode2.wav
-14:21:26:901 file.Read ok
-14:21:26:901 load sound\gem.wav
-14:21:26:902 file.Read ok
-14:21:26:902 load sound\jl87.wav
-14:21:26:902 file.Read ok
-14:21:26:902 load sound\nlevel.wav
-14:21:26:903 file.Read ok
-14:21:26:903 load sound\explode.wav
-14:21:26:904 file.Read ok
-14:21:26:904 load sound\exorcism.wav
-14:21:26:904 file.Read ok
-14:21:26:904 load sound\apple.wav
-14:21:26:904 file.Read ok
-14:21:26:904 load sound\bell1.wav
-14:21:26:904 file.Read ok
-14:21:26:904 load sound\finger.wav
-14:21:26:905 file.Read ok
-14:21:26:905 load sound\health.wav
-14:21:26:905 file.Read ok
-14:21:26:905 load sound\restart.wav
-14:21:26:906 file.Read ok
-14:21:26:906 load sound\menusel.wav
-14:21:26:906 file.Read ok
-14:21:26:907 load sound\fire.wav
-14:21:26:907 file.Read ok
-14:21:26:907 load sound\spring.wav
-14:21:26:907 file.Read ok
-14:21:26:907 load sound\pop.wav
-14:21:26:907 file.Read ok
-14:21:26:907 load sound\gfx3.wav
-14:21:26:908 file.Read ok
-14:21:26:908 load sound\pigegrin.wav
-14:21:26:908 file.Read ok
-14:21:26:908 load sound\musicformario.wav
-14:21:26:950 file.Read ok
-14:21:28:140 play: id==18 ERR_SOUNDNOTFOUND
-14:21:28:804 play: id==18 ERR_SOUNDNOTFOUND
-14:21:30:124 sound\pop.wav (0)
-14:21:30:124 Lock sound buffer ok
-14:21:30:659 sound\pop.wav (0)
-14:21:30:659 Lock sound buffer ok
-14:21:31:120 sound\pop.wav (0)
-14:21:31:120 Lock sound buffer ok
-14:21:31:358 sound\pop.wav (0)
-14:21:31:358 Lock sound buffer ok
-14:21:31:616 sound\pop.wav (0)
-14:21:31:616 Lock sound buffer ok
-14:21:32:400 sound\pop.wav (0)
-14:21:32:400 Lock sound buffer ok
-14:21:32:733 sound\pop.wav (0)
-14:21:32:733 Lock sound buffer ok
-14:21:33:150 sound\pop.wav (0)
-14:21:33:150 Lock sound buffer ok
-14:23:10:966 play: id==18 ERR_SOUNDNOTFOUND
-14:23:11:614 play: id==18 ERR_SOUNDNOTFOUND
-14:23:41:569 play: id==18 ERR_SOUNDNOTFOUND
-14:23:47:112 play: id==18 ERR_SOUNDNOTFOUND
-14:23:47:745 play: id==18 ERR_SOUNDNOTFOUND
-14:23:50:139 sound\finger.wav (9)
-14:23:50:139 Lock sound buffer ok
-14:23:50:395 sound\gfx3.wav (16)
-14:23:50:395 Lock sound buffer ok
-14:23:56:300 play: id==18 ERR_SOUNDNOTFOUND
-14:23:56:950 play: id==18 ERR_SOUNDNOTFOUND
-14:24:04:509 sound\finger.wav (9)
-14:24:04:509 Lock sound buffer ok
-14:24:04:745 sound\gfx3.wav (16)
-14:24:04:745 Lock sound buffer ok
-14:25:45:181 play: id==18 ERR_SOUNDNOTFOUND
-14:25:45:850 play: id==18 ERR_SOUNDNOTFOUND
-14:25:46:793 sound\pop.wav (0)
-14:25:46:793 Lock sound buffer ok
-14:25:48:839 sound\fire.wav (13)
-14:25:48:839 Lock sound buffer ok
-14:25:49:331 sound\fire.wav (13)
-14:25:49:331 Lock sound buffer ok
-14:25:49:498 sound\fire.wav (13)
-14:25:49:498 Lock sound buffer ok
-14:26:06:888 play: id==18 ERR_SOUNDNOTFOUND
-14:26:07:569 play: id==18 ERR_SOUNDNOTFOUND
-14:26:08:385 sound\pop.wav (0)
-14:26:08:385 Lock sound buffer ok
-14:26:10:678 sound\fire.wav (13)
-14:26:10:678 Lock sound buffer ok
-14:26:10:859 sound\fire.wav (13)
-14:26:10:859 Lock sound buffer ok
-14:26:11:937 sound\pop.wav (0)
-14:26:11:937 Lock sound buffer ok
-14:26:14:030 sound\fire.wav (13)
-14:26:14:031 Lock sound buffer ok
-14:26:14:197 sound\fire.wav (13)
-14:26:14:197 Lock sound buffer ok
-14:26:14:935 sound\pop.wav (0)
-14:26:14:936 Lock sound buffer ok
-14:26:16:696 sound\fire.wav (13)
-14:26:16:696 Lock sound buffer ok
-14:26:17:327 sound\fire.wav (13)
-14:26:17:328 Lock sound buffer ok
-14:26:17:488 sound\fire.wav (13)
-14:26:17:488 Lock sound buffer ok
-14:26:17:840 sound\pop.wav (0)
-14:26:17:840 Lock sound buffer ok
-14:26:19:732 sound\fire.wav (13)
-14:26:19:732 Lock sound buffer ok
-14:26:20:229 sound\fire.wav (13)
-14:26:20:229 Lock sound buffer ok
-14:26:20:441 sound\fire.wav (13)
-14:26:20:442 Lock sound buffer ok
-14:26:21:558 sound\pop.wav (0)
-14:26:21:558 Lock sound buffer ok
-14:26:23:568 sound\fire.wav (13)
-14:26:23:568 Lock sound buffer ok
-14:26:24:069 sound\fire.wav (13)
-14:26:24:069 Lock sound buffer ok
-14:26:24:247 sound\fire.wav (13)
-14:26:24:247 Lock sound buffer ok
-14:26:24:783 sound\pop.wav (0)
-14:26:24:783 Lock sound buffer ok
-14:26:24:955 sound\pop.wav (0)
-14:26:24:955 Lock sound buffer ok
-14:26:25:252 sound\pop.wav (0)
-14:26:25:252 Lock sound buffer ok
-14:26:25:691 sound\bell1.wav (8)
-14:26:25:691 Lock sound buffer ok
-14:26:26:638 sound\jl87.wav (3)
-14:26:26:638 Lock sound buffer ok
-14:26:26:927 sound\fire.wav (13)
-14:26:26:927 Lock sound buffer ok
-14:26:27:293 sound\fire.wav (13)
-14:26:27:293 Lock sound buffer ok
-14:26:27:464 sound\fire.wav (13)
-14:26:27:464 Lock sound buffer ok
-14:26:28:809 sound\pop.wav (0)
-14:26:28:809 Lock sound buffer ok
-14:26:41:644 play: id==18 ERR_SOUNDNOTFOUND
-14:26:42:307 play: id==18 ERR_SOUNDNOTFOUND
-14:26:43:160 sound\pop.wav (0)
-14:26:43:160 Lock sound buffer ok
-14:26:45:230 sound\fire.wav (13)
-14:26:45:230 Lock sound buffer ok
-14:26:45:708 sound\fire.wav (13)
-14:26:45:708 Lock sound buffer ok
-14:26:45:861 sound\fire.wav (13)
-14:26:45:861 Lock sound buffer ok
-14:26:46:820 sound\pop.wav (0)
-14:26:46:820 Lock sound buffer ok
-14:26:48:907 sound\fire.wav (13)
-14:26:48:907 Lock sound buffer ok
-14:26:49:082 sound\fire.wav (13)
-14:26:49:082 Lock sound buffer ok
-14:26:49:893 sound\pop.wav (0)
-14:26:49:893 Lock sound buffer ok
-14:26:50:097 sound\pop.wav (0)
-14:26:50:097 Lock sound buffer ok
-14:26:50:416 sound\pop.wav (0)
-14:26:50:416 Lock sound buffer ok
-14:26:50:593 sound\pop.wav (0)
-14:26:50:593 Lock sound buffer ok
-14:26:50:793 sound\pop.wav (0)
-14:26:50:793 Lock sound buffer ok
-14:26:51:101 sound\bell1.wav (8)
-14:26:51:101 Lock sound buffer ok
-14:26:51:321 sound\bell1.wav (8)
-14:26:51:321 Lock sound buffer ok
-14:26:51:506 sound\bell1.wav (8)
-14:26:51:506 Lock sound buffer ok
-14:26:51:750 sound\pop.wav (0)
-14:26:51:750 Lock sound buffer ok
-14:26:52:228 sound\bell1.wav (8)
-14:26:52:228 Lock sound buffer ok
-14:26:52:555 sound\pop.wav (0)
-14:26:52:555 Lock sound buffer ok
-14:26:52:903 sound\jl87.wav (3)
-14:26:52:903 Lock sound buffer ok
-14:26:53:928 sound\fire.wav (13)
-14:26:53:928 Lock sound buffer ok
-14:26:54:097 sound\fire.wav (13)
-14:26:54:097 Lock sound buffer ok
-14:26:55:473 sound\pop.wav (0)
-14:26:55:473 Lock sound buffer ok
-14:27:08:013 play: id==18 ERR_SOUNDNOTFOUND
-14:27:08:712 play: id==18 ERR_SOUNDNOTFOUND
-14:27:13:403 SOUND::~SOUND start
-14:27:13:403 SOUND::unload(0)
-14:27:13:403 SOUND::unload(1)
-14:27:13:403 SOUND::unload(2)
-14:27:13:403 SOUND::unload(3)
-14:27:13:403 SOUND::unload(4)
-14:27:13:403 SOUND::unload(5)
-14:27:13:403 SOUND::unload(6)
-14:27:13:403 SOUND::unload(7)
-14:27:13:404 SOUND::unload(8)
-14:27:13:404 SOUND::unload(9)
-14:27:13:404 SOUND::unload(10)
-14:27:13:404 SOUND::unload(11)
-14:27:13:404 SOUND::unload(12)
-14:27:13:404 SOUND::unload(13)
-14:27:13:404 SOUND::unload(14)
-14:27:13:404 SOUND::unload(15)
-14:27:13:404 SOUND::unload(16)
-14:27:13:404 SOUND::unload(17)
-14:27:13:405 SOUND::unload(18)
+02:55:49:856 open sound device ok
+02:55:58:785 DirectSoundCreate ok
+02:55:58:839 SetCooperativeLevel ok
+02:55:58:855 CreateSoundBuffer ok
+02:56:14:440 load sound\pop.wav
+02:56:14:442 file.Read ok
+02:56:14:442 load sound\xplode2.wav
+02:56:14:447 file.Read ok
+02:56:14:447 load sound\gem.wav
+02:56:14:453 file.Read ok
+02:56:14:453 load sound\jl87.wav
+02:56:14:457 file.Read ok
+02:56:14:457 load sound\nlevel.wav
+02:56:14:460 file.Read ok
+02:56:14:460 load sound\explode.wav
+02:56:14:467 file.Read ok
+02:56:14:467 load sound\exorcism.wav
+02:56:14:470 file.Read ok
+02:56:14:470 load sound\apple.wav
+02:56:14:477 file.Read ok
+02:56:14:477 load sound\bell1.wav
+02:56:14:483 file.Read ok
+02:56:14:483 load sound\finger.wav
+02:56:14:498 file.Read ok
+02:56:14:498 load sound\health.wav
+02:56:14:506 file.Read ok
+02:56:14:506 load sound\restart.wav
+02:56:14:517 file.Read ok
+02:56:14:517 load sound\menusel.wav
+02:56:14:526 file.Read ok
+02:56:14:527 load sound\fire.wav
+02:56:14:538 file.Read ok
+02:56:14:538 load sound\spring.wav
+02:56:14:548 file.Read ok
+02:56:14:548 load sound\pop.wav
+02:56:14:549 file.Read ok
+02:56:14:549 load sound\gfx3.wav
+02:56:14:558 file.Read ok
+02:56:14:558 load sound\pigegrin.wav
+02:56:14:563 file.Read ok
+02:56:14:563 load sound\musicformario.wav
+02:56:14:744 file.Read ok
+02:56:14:749 sound stop ok
+02:57:17:440 close waveout device ok
+02:57:18:488 open sound device ok
+02:57:18:488 sound\musicformario.wav (20)
+02:59:33:475 SOUND::~SOUND start
+02:59:33:475 SOUND::unload(0)
+02:59:33:475 SOUND::unload(1)
+02:59:33:475 SOUND::unload(2)
+02:59:33:475 SOUND::unload(3)
+02:59:33:475 SOUND::unload(4)
+02:59:33:475 SOUND::unload(5)
+02:59:33:475 SOUND::unload(6)
+02:59:33:475 SOUND::unload(7)
+02:59:33:475 SOUND::unload(8)
+02:59:33:475 SOUND::unload(9)
+02:59:33:475 SOUND::unload(10)
+02:59:33:475 SOUND::unload(11)
+02:59:33:476 SOUND::unload(12)
+02:59:33:476 SOUND::unload(13)
+02:59:33:476 SOUND::unload(14)
+02:59:33:476 SOUND::unload(15)
+02:59:33:476 SOUND::unload(16)
+02:59:33:476 SOUND::unload(17)
+02:59:33:476 SOUND::unload(18)
+02:59:33:885 sound stop ok
+02:59:34:418 close waveout device ok
